@@ -2,7 +2,7 @@
 
 public class Sweeper {
    private String moin;
-
+   private String bla;
     public String getMoin() {
         return moin;
     }
