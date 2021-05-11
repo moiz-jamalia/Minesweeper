@@ -2,9 +2,6 @@
 
 public class Sweeper {
 
-   private
-
-
 
 
 }
