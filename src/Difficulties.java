@@ -1,4 +1,4 @@
-public class difficulties {
+public class Difficulties {
     public static int[][] minen;
     public static char[][] board;
 
@@ -16,5 +16,13 @@ public class difficulties {
     public static void hard(){
         minen = new int[100][100];
         board = new char[30][16];
+    }
+
+    public static int[][] getMinen(){
+        return minen;
+    }
+
+    public static char[][] getBoard() {
+        return board;
     }
 }
