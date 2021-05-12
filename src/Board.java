@@ -4,6 +4,5 @@ public class Board {
     private int Line;
     private int column;
 
-    public Board() {
-    }
+
 }
