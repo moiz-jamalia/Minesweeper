@@ -13,9 +13,9 @@ public class Game {
         do {
             turn++;
             System.out.println("Turn: " +turn);
+            board.show();
 
             if (!finish){
-
                 finish = board.win();
             }
 
@@ -26,9 +26,7 @@ public class Game {
             board.showMines();
         }else{
             System.out.println("you're looser try again next time");
+            board.showMines();
         }
-        board.showMines();
-
-
     }
 }
