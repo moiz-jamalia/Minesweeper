@@ -41,7 +41,7 @@ public class Board {
         for (int i = 0; i < minen.length; i++) {
             do {
                 line = random.nextInt(board.length) + 1;
-                column = random.nextInt(board.length) + 1;
+                column = random.nextInt(board[0].length) + 1;
 
                 draw = minen[line][column] == -1;
             }while (draw);
