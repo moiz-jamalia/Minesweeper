@@ -99,4 +99,22 @@ public class Board {
             return false;
         }
     }
+    public void show(){
+        System.out.println("\n      lines");
+        for (int line = board.length - 2; line > 0; line--){
+            System.out.println("    " + line + " ");
+            for (int column = 1; column < board[0].length - 1; column++){
+                System.out.println("    " + board[line][column]);
+            }
+        }
+    }
+
+    public void showMines(){
+        for(int i=1 ; i < 9; i++)
+            for(int j=1 ; j < 9 ; j++)
+                if(minen[i][j] == -1)
+                    board[i][j]='*';
+
+        show();
+    }
 }
