@@ -83,4 +83,20 @@ public class Board {
             for(int j=1 ; j<minen.length ; j++)
                 board[i][j]= '_';
     }
+
+    public boolean win(){
+        int count = 0;
+        for (int line = 1; line < board.length - 1; line++){
+            for (int column = 1; column < board[0].length - 1; column++){
+                if (board[line][column] == '_'){
+                    count++;
+                }
+            }
+        }
+        if (count == board.length){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
