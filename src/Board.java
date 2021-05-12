@@ -19,7 +19,6 @@ public class Board {
             Difficulties.easy();
             minen = Difficulties.getMinen();
             board = Difficulties.getBoard();
-
         }else if (difficulties.equals("medium")){
             Difficulties.medium();
             minen = Difficulties.getMinen();
