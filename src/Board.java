@@ -15,18 +15,22 @@ public class Board {
         System.out.println("choose your difficulties: ");
         difficulties = input.next();
 
-        if(difficulties.equals("easy")){
-            Difficulties.easy();
-            minen = Difficulties.getMinen();
-            board = Difficulties.getBoard();
-        }else if (difficulties.equals("medium")){
-            Difficulties.medium();
-            minen = Difficulties.getMinen();
-            board = Difficulties.getBoard();
-        }else if (difficulties.equals("hard")){
-            Difficulties.hard();
-            minen = Difficulties.getMinen();
-            board = Difficulties.getBoard();
+        switch (difficulties) {
+            case "easy" -> {
+                Difficulties.easy();
+                minen = Difficulties.getMinen();
+                board = Difficulties.getBoard();
+            }
+            case "medium" -> {
+                Difficulties.medium();
+                minen = Difficulties.getMinen();
+                board = Difficulties.getBoard();
+            }
+            case "hard" -> {
+                Difficulties.hard();
+                minen = Difficulties.getMinen();
+                board = Difficulties.getBoard();
+            }
         }
     }
 }
