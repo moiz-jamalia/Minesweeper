@@ -1,11 +1,10 @@
-import java.sql.SQLOutput;
 import java.util.Random;
 import java.util.Scanner;
 
 public class Board {
     public int[][] minen;
     public char[][] board;
-    public int Line;
+    public int line;
     public int column;
     public String difficulties;
     Random random = new Random();
@@ -31,6 +30,22 @@ public class Board {
                 minen = Difficulties.getMinen();
                 board = Difficulties.getBoard();
             }
+        }
+        randomMines();
+    }
+
+    public void randomMines(){
+        boolean draw;
+        int line;
+        int column;
+        for (int i = 0; i < minen.length; i++) {
+            do {
+                line = random.nextInt(board.length) + 1;
+                column = random.nextInt(board.length) + 1;
+
+                draw = minen[line][column] == -1;
+            }while (draw);
+            minen[line][column] = -1;
         }
     }
 }
