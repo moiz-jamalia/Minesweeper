@@ -37,9 +37,9 @@ public class Board {
         }
         minen = minen1;
         board = board1;
-        PlaceMines();
-        randomMines();
-        fillTips();
+//        PlaceMines();
+//        randomMines();
+//        fillTips();
         startBoard();
     }
 
@@ -81,8 +81,8 @@ public class Board {
     }
 
     public void startBoard(){
-        for(int i=1 ; i<minen.length ; i++)
-            for(int j=1 ; j<minen.length ; j++)
+        for(int i=1 ; i < board.length ; i++)
+            for(int j=1 ; j < board[0].length ; j++)
                 board[i][j]= '_';
     }
 
@@ -112,12 +112,14 @@ public class Board {
     }
 
     public void showMines(){
-        for(int i=1 ; i < 9; i++)
-            for(int j=1 ; j < 9 ; j++)
-                if(minen[i][j] == -1)
+        for(int i=1 ; i < 9; i++) {
+            for(int j=1 ; j < 9 ; j++) {
+                if(minen[i][j] == -1) {
                     board[i][j]='*';
-
-        show();
+                	show();
+                }
+            }
+        }
     }
 
     public void showNeighbors(){
