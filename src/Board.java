@@ -17,21 +17,23 @@ public class Board {
         difficulties = input.next();
 
         switch (difficulties) {
-            case "easy" -> {
+            case "easy": 
                 Difficulties.easy();
                 minen1 = Difficulties.getMinen();
                 board1 = Difficulties.getBoard();
-            }
-            case "medium" -> {
+                break;
+                
+            case "medium": 
                 Difficulties.medium();
                 minen1 = Difficulties.getMinen();
                 board1 = Difficulties.getBoard();
-            }
-            case "hard" -> {
+                break;
+                
+            case "hard":
                 Difficulties.hard();
                 minen1 = Difficulties.getMinen();
                 board1 = Difficulties.getBoard();
-            }
+                break;
         }
         minen = minen1;
         board = board1;
