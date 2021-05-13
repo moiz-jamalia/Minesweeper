@@ -6,8 +6,8 @@ public class Board {
     public int[][] minen1;
     public char[][] board;
     public char[][] board1;
-    public int line;
-    public int column;
+    public int Line;
+    public int Column;
     public String difficulties;
     Random random = new Random();
     Scanner input = new Scanner(System.in);
@@ -116,5 +116,15 @@ public class Board {
                     board[i][j]='*';
 
         show();
+    }
+
+    public void showNeighbors(){
+        for (int i = 1; i < 2; i++){
+            for (int j = 1; j < 2; j++){
+                if ((minen[Line +i][Column +j] != 1) && (Line != 0 && Line != (board.length - 1) && Column != 0 && Column != (board[0].length - 1))){
+                    board[Line+i][Column+j] = Character.forDigit(minen[Line+i][Column+j], board.length);
+                }
+            }
+        }
     }
 }
