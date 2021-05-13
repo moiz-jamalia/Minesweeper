@@ -3,5 +3,4 @@ public class Sweeper {
         Game game = new Game();
         game.Jogo();
     }
-
 }
