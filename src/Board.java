@@ -17,7 +17,7 @@ public class Board {
         difficulties = input.next();
 
         switch (difficulties) {
-            case "easy": 
+            case "easy":
                 Difficulties.easy();
                 minen1 = Difficulties.getMinen();
                 board1 = Difficulties.getBoard();
