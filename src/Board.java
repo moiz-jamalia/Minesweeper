@@ -124,8 +124,8 @@ public class Board {
     }
 
     public void showMines(){
-        for(int i=1 ; i < 9; i++) {
-            for(int j=1 ; j < 9 ; j++) {
+        for(int i=1 ; i < (XMines - 1); i++) {
+            for(int j=1 ; j < (YMines - 1); j++) {
                 if(mines[i][j] == -1) {
                     board[i][j]='*';
                 	show();
