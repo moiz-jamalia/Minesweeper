@@ -120,7 +120,7 @@ public class Board {
             for (int column = 0; column < Yboard; column++){
                 System.out.print("    " + board[line][column]);
             }
-            System.out.println("\n");
+            System.out.println("");
         }
     }
 
