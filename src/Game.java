@@ -32,5 +32,4 @@ public class Game {
             board.showMines();
         }
     }
-    }
 }
