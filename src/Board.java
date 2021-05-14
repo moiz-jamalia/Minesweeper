@@ -156,12 +156,12 @@ public class Board {
 
     public boolean setPosition(){
         do {
-            System.out.println("\nLine:     ");
+            System.out.print("\nLine:     ");
             Line = input.nextInt();
-            System.out.println("\nColumn:   ");
+            System.out.print("\nColumn:   ");
             Column = input.nextInt();
 
-            if ((board[Line][Column] != '_') && ((Line < Xboard - 1 && Line > 0) && (Column < Yboard - 1 && Column > 0))){
+            if ((board[Line][Column] != '_') && ((Line < Xboard - 1 && Line > 0) && (Column < Yboard && Column > 0))){
                 System.out.println("Field is already shown");
             }
         }while ((Line < 1 || Line > Xboard - 1 || Column < 1 || Column > Yboard - 1) || (board[Line][Column] != '_'));
