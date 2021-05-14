@@ -115,10 +115,10 @@ public class Board {
     }
     public void show(){
         System.out.println("      lines");
-        for (int line = Xboard ; line > 0; line--){
+        for (int line = Xboard - 1; line > 0; line--){
             System.out.println("    " + line + " ");
             for (int column = 1; column < Yboard - 1; column++){
-                System.out.println("    " + board[line][column]);
+                System.out.print("    " + board[line][column]);
             }
         }
     }
