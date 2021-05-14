@@ -46,7 +46,7 @@ public class Board {
         mines = new int[XMines][YMines];
         board = new char[Xboard][Yboard];
     //    PlaceMines();
-        randomMines();
+    //    randomMines();
         fillTips();
         startBoard();
     }
