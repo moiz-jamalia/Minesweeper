@@ -117,7 +117,7 @@ public class Board {
         System.out.println("      lines");
         for (int line = Xboard ; line > 0; line--){
             System.out.println("    " + line + " ");
-            for (int column = 1; column < Yboard - 0;column++){
+            for (int column = 1; column < Yboard - 1; column++){
                 System.out.println("    " + board[line][column]);
             }
         }
