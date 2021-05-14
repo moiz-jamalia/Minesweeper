@@ -19,7 +19,7 @@ public class Difficulties {
         // Board 16x16
         XMines = 40;
         YMines = 40;
-        XBoard = 18;
+        XBoard = 17;
         YBoard = 17;
     }
 
