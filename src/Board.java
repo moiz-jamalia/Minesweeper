@@ -91,8 +91,8 @@ public class Board {
     }
 
     public void startBoard(){
-        for(int i=1 ; i < Xboard ; i++) {
-            for (int j = 1; j < Yboard; j++) {
+        for(int i = 1 ; i < board.length; i++) {
+            for (int j = 1; j < board.length; j++) {
                 board[i][j] = '_';
             }
         }
