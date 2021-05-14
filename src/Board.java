@@ -123,7 +123,7 @@ public class Board {
             System.out.println("");
         }
         for (int column = 0; column < Yboard; column++){
-            System.out.print("    " + column):
+            System.out.print("    " + column);
         }
         System.out.println("                      Columns");
     }
