@@ -1,28 +1,50 @@
 public class Difficulties {
-    public static int[][] minen;
-    public static char[][] board;
+    public static int XMines;
+    public static int YMines;
+    public static char XBoard;
+    public static char YBoard;
 
 
     public static void easy(){
-        minen = new int[10][10];
-        board = new char[9][9];
+        // Mines 10
+        // Board 8x8
+        XMines = 10;
+        YMines = 10;
+        XBoard = 8;
+        YBoard = 8;
     }
 
     public static void medium(){
-        minen = new int[40][40];
-        board = new char[17][17];
+        // Mines 40
+        // Board 16x16
+        XMines = 40;
+        YMines = 40;
+        XBoard = 16;
+        YBoard = 16;
     }
 
     public static void hard(){
-        minen = new int[100][100];
-        board = new char[31][17];
+        // Mines 90
+        // Board 30x16
+        XMines = 90;
+        YMines = 90;
+        XBoard = 30;
+        YBoard = 16;
     }
 
-    public static int[][] getMinen(){
-        return minen;
+    public static int getXMines(){
+        return XMines;
     }
 
-    public static char[][] getBoard() {
-        return board;
+    public static int getYMines(){
+        return YMines;
+    }
+
+    public static char getXBoard() {
+        return XBoard;
+    }
+
+    public static char getYBoard(){
+        return YBoard;
     }
 }

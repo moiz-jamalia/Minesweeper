@@ -2,14 +2,14 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Board {
-    public int[][] minen;
-    public int[][] minen1;
-    public static char[][] board;
-    public char[][] board1;
+    public int[][] mines;
+    public char[][] board;
     public int Line;
     public int Column;
     public static int Yboard;
-    public  static int Xboard;
+    public static int Xboard;
+    public static int YMines;
+    public static int XMines;
     public String difficulties;
     Random random = new Random();
     Scanner input = new Scanner(System.in);
@@ -21,27 +21,30 @@ public class Board {
         switch (difficulties) {
             case "easy":
                 Difficulties.easy();
-                minen1 = Difficulties.getMinen();
-                board1 = Difficulties.getBoard();
+                 Xboard = Difficulties.getXBoard();
+                 Yboard = Difficulties.getYBoard();
+                 XMines = Difficulties.getXMines();
+                 YMines = Difficulties.getYMines();
                 break;
                 
             case "medium": 
                 Difficulties.medium();
-                minen1 = Difficulties.getMinen();
-                board1 = Difficulties.getBoard();
+                Xboard = Difficulties.getXBoard();
+                Yboard = Difficulties.getYBoard();
+                XMines = Difficulties.getXMines();
+                YMines = Difficulties.getYMines();
                 break;
                 
             case "hard":
                 Difficulties.hard();
-                minen1 = Difficulties.getMinen();
-                board1 = Difficulties.getBoard();
+                Xboard = Difficulties.getXBoard();
+                Yboard = Difficulties.getYBoard();
+                XMines = Difficulties.getXMines();
+                YMines = Difficulties.getYMines();
                 break;
         }
-        minen = minen1;
-        board = board1;
-
-        Xboard = board.length;
-        Yboard = board[0].length;
+        mines = new int[XMines][YMines];
+        board = new char[Xboard][Yboard];
 //        PlaceMines();
 //        randomMines();
 //        fillTips();
@@ -57,16 +60,16 @@ public class Board {
                 line = random.nextInt(board.length) + 1;
                 column = random.nextInt(board[0].length) + 1;
 
-                draw = minen[line][column] == -1;
+                draw = mines[line][column] == -1;
             }while (draw);
-            minen[line][column] = -1;
+            mines[line][column] = -1;
         }
     }
 
     public void PlaceMines(){
-        for (int i = 0; i < minen.length; i++){
-            for (int j = 0; j < minen.length; j++){
-                minen[i][j] = 0;
+        for (int i = 0; i < mines.length; i++){
+            for (int j = 0; j < mines.length; j++){
+                mines[i][j] = 0;
             }
         }
     }
@@ -77,9 +80,9 @@ public class Board {
 
                 for(int i=-1 ; i<=1 ; i++)
                     for(int j=-1 ; j<=1 ; j++)
-                        if(minen[line][column] != -1)
-                            if(minen[line+i][column+j] == -1)
-                                minen[line][column]++;
+                        if(mines[line][column] != -1)
+                            if(mines[line+i][column+j] == -1)
+                                mines[line][column]++;
 
             }
 
@@ -119,7 +122,7 @@ public class Board {
     public void showMines(){
         for(int i=1 ; i < 9; i++) {
             for(int j=1 ; j < 9 ; j++) {
-                if(minen[i][j] == -1) {
+                if(mines[i][j] == -1) {
                     board[i][j]='*';
                 	show();
                 }
@@ -130,8 +133,8 @@ public class Board {
     public void showNeighbors(){
         for (int i = 1; i < 2; i++){
             for (int j = 1; j < 2; j++){
-                if ((minen[Line +i][Column +j] != 1) && (Line != 0 && Line != (board.length - 1) && Column != 0 && Column != (board[0].length - 1))){
-                    board[Line+i][Column+j] = Character.forDigit(minen[Line+i][Column+j], board.length);
+                if ((mines[Line +i][Column +j] != 1) && (Line != 0 && Line != (board.length - 1) && Column != 0 && Column != (board[0].length - 1))){
+                    board[Line+i][Column+j] = Character.forDigit(mines[Line+i][Column+j], board.length);
                 }
             }
         }
