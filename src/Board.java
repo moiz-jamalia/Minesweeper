@@ -55,10 +55,10 @@ public class Board {
         boolean draw;
         int line;
         int column;
-        for (int i = 0; i < board.length; i++) {
+        for (int i = 0; i < mines.length; i++) {
             do {
-                line = random.nextInt(board.length) + 1;
-                column = random.nextInt(board[0].length) + 1;
+                line = random.nextInt(mines.length) + 1;
+                column = random.nextInt(mines[0].length) + 1;
 
                 draw = mines[line][column] == -1;
             }while (draw);
@@ -75,23 +75,27 @@ public class Board {
     }
 
     public void fillTips(){
-        for(int line=1 ; line < board.length - 1 ; line++)
-            for(int column=1 ; column < board[0].length - 1 ; column++){
-
-                for(int i=-1 ; i<=1 ; i++)
-                    for(int j=-1 ; j<=1 ; j++)
-                        if(mines[line][column] != -1)
-                            if(mines[line+i][column+j] == -1)
+        for(int line=1 ; line < board.length - 1 ; line++) {
+            for (int column = 1; column < board[0].length - 1; column++) {
+                for (int i = -1; i <= 1; i++) {
+                    for (int j = -1; j <= 1; j++) {
+                        if (mines[line][column] != -1) {
+                            if (mines[line + i][column + j] == -1) {
                                 mines[line][column]++;
-
+                            }
+                        }
+                    }
+                }
             }
-
+        }
     }
 
     public void startBoard(){
-        for(int i=1 ; i < board.length ; i++)
-            for(int j=1 ; j < board[0].length ; j++)
-                board[i][j]= '_';
+        for(int i=1 ; i < board.length ; i++) {
+            for (int j = 1; j < board[0].length; j++) {
+                board[i][j] = '_';
+            }
+        }
     }
 
     public boolean win(){
