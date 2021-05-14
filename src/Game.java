@@ -10,7 +10,7 @@ public class Game {
     public void Jogo(){
         board = new Board();
         Play(board);
-        System.out.println("hello");
+        System.out.println("\n hello");
         System.out.println(Yboard);
     }
 
