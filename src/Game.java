@@ -4,11 +4,14 @@ public class Game {
     boolean win = false;
     int turn = 0;
 
+    public int Xboard = Board.Xboard;
+    public int Yboard = Board.Yboard;
+
     public void Jogo(){
         board = new Board();
         Play(board);
-        System.out.println(Board.Xboard);
-        System.out.println(Board.Yboard);
+        System.out.println("hello");
+        System.out.println(Yboard);
     }
 
     public void Play(Board board){
