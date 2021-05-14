@@ -108,7 +108,7 @@ public class Board {
     }
     public void show(){
         System.out.println("      lines");
-        for (int line = Board.Xboard; line > 0; line--){
+        for (int line = Board.Xboard - 1; line > 0; line--){
             System.out.print("    " + line + " ");
             for (int column = 1; column < Board.Yboard - 1; column++){
                 System.out.print("    " + board[line][column]);
