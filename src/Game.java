@@ -11,7 +11,7 @@ public class Game {
         board = new Board();
         Play(board);
         System.out.println("\n hello");
-        System.out.println(Yboard);
+        System.out.println(Xboard);
     }
 
     public void Play(Board board){
