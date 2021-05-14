@@ -1,7 +1,7 @@
 public class Game {
     private Board board;
     boolean finish = false;
-    boolean win = false;
+    boolean win = true;
     int turn = 0;
 
     public int Xboard = Board.Xboard;

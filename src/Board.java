@@ -100,7 +100,7 @@ public class Board {
                 }
             }
         }
-        if (count == board.length){
+        if (count == board.length - 1){
             return true;
         }else{
             return false;
