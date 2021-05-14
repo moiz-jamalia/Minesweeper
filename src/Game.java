@@ -4,7 +4,7 @@ public class Game {
     boolean win = true;
     int turn = 0;
 
-    public void Jogo(){
+    public void Minesweeper(){
         board = new Board();
         Play(board);
 
