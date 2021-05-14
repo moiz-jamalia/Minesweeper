@@ -115,7 +115,7 @@ public class Board {
     }
     public void show(){
         System.out.println("\n  lines");
-        for (int line = Xboard - 1; line > 0; line--){
+        for (int line = Xboard; line > 0; line--){
             System.out.print("\t" + line);
             for (int column = 0; column < Yboard; column++){
                 System.out.print("\t" + board[line][column]);
