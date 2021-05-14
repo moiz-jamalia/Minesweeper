@@ -122,10 +122,11 @@ public class Board {
             }
             System.out.println("");
         }
-        for (int column = 0; column < Yboard; column++){
+        for (int column = 1; column < Yboard; column++){
             System.out.print("    " + column);
         }
-        System.out.println("                      Columns");
+        System.out.println("");
+        System.out.println("\n                      Columns");
     }
 
     public void showMines(){
