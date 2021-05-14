@@ -114,19 +114,6 @@ public class Board {
         }
     }
     public void show(){
-        System.out.println("\n  lines");
-        for (int line = Xboard - 1; line > 0; line--){
-            System.out.print("\t" + line);
-            for (int column = 0; column < Yboard; column++){
-                System.out.print("\t" + board[line][column]);
-            }
-            System.out.println("");
-        }
-        System.out.print("\t\t ");
-        for (int column = 1; column < Yboard; column++){
-            System.out.print("\t" + column);
-        }
-        System.out.print("\t Columns");
     }
 
     public void showMines(){
