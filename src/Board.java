@@ -122,7 +122,7 @@ public class Board {
             }
             System.out.println("");
         }
-        System.out.println("\t\t");
+        System.out.println("\t\t\t\t");
         for (int column = 1; column < Yboard; column++){
             System.out.print("  " + column);
         }
