@@ -156,9 +156,9 @@ public class Board {
 
     public boolean setPosition(){
         do {
-            System.out.print("\nLine:     ");
+            System.out.print("\nLine: ");
             Line = input.nextInt();
-            System.out.print("\nColumn:   ");
+            System.out.print("\nColumn: ");
             Column = input.nextInt();
 
             if ((board[Line][Column] != '_') && ((Line < Xboard - 1 && Line > 0) && (Column < Yboard && Column > 0))){
