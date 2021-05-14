@@ -15,7 +15,7 @@ public class Board {
     Scanner input = new Scanner(System.in);
 
     public Board(){
-        System.out.println("choose your difficulties: ");
+        System.out.println("choose your difficulty: ");
         difficulties = input.next();
 
         switch (difficulties) {
