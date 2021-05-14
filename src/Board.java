@@ -104,9 +104,9 @@ public class Board {
     public void show(){
         System.out.println("\n      lines");
         for (int line = board.length - 2; line > 0; line--){
-            System.out.println("    " + line + " ");
+            System.out.print("    " + line + " ");
             for (int column = 1; column < board[0].length - 1; column++){
-                System.out.println("    " + board[line][column]);
+                System.out.print("    " + board[line][column]);
             }
         }
     }
