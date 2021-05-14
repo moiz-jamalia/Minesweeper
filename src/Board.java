@@ -120,7 +120,7 @@ public class Board {
             for (int column = 0; column < Yboard; column++){
                 System.out.print("\t" + board[line][column]);
             }
-            System.out.println("\n");
+            System.out.println("");
         }
         System.out.print("\t\t ");
         for (int column = 1; column < Yboard; column++){
