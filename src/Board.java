@@ -125,7 +125,6 @@ public class Board {
         for (int column = 1; column < Yboard; column++){
             System.out.print("    " + column);
         }
-        System.out.println("");
         System.out.println("\n                      Columns");
     }
 
