@@ -118,13 +118,13 @@ public class Board {
         for (int line = Xboard - 1; line > 0; line--){
             System.out.print("    " + line);
             for (int column = 0; column < Yboard; column++){
-                System.out.print("  " + board[line][column]);
+                System.out.print("    " + board[line][column]);
             }
             System.out.println("");
         }
-        System.out.println("\t\t\t\t");
+        System.out.print("\t\t");
         for (int column = 1; column < Yboard; column++){
-            System.out.print("  " + column);
+            System.out.print("    " + column);
         }
         System.out.println("\n                      Columns");
     }
