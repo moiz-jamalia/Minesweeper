@@ -10,8 +10,8 @@ public class Difficulties {
         // Board 8x8
         XMines = 10;
         YMines = 10;
-        XBoard = 8;
-        YBoard = 8;
+        XBoard = 9;
+        YBoard = 9;
     }
 
     public static void medium(){
@@ -19,8 +19,8 @@ public class Difficulties {
         // Board 16x16
         XMines = 40;
         YMines = 40;
-        XBoard = 16;
-        YBoard = 16;
+        XBoard = 17;
+        YBoard = 17;
     }
 
     public static void hard(){
@@ -28,8 +28,8 @@ public class Difficulties {
         // Board 30x16
         XMines = 90;
         YMines = 90;
-        XBoard = 30;
-        YBoard = 16;
+        XBoard = 31;
+        YBoard = 17;
     }
 
     public static int getXMines(){
