@@ -10,24 +10,6 @@ public class Game {
     }
 
     public void Play(Board board){
-        do {
-            turn++;
-            System.out.println("Turn: " +turn);
-            board.show();
-
-            if (!finish){
-                board.showNeighbors();
-                finish = board.win();
-            }
-
-        }while (!finish);
-
-        if (board.win()){
-            System.out.println("Congrats, you let the" + board.board.length + "x" + board.board[0].length + "with the mines in" + turn + "turns");
-            board.showMines();
-        }else{
-            System.out.println("you're looser try again next time");
-            board.showMines();
-        }
+        board.show();
     }
 }
