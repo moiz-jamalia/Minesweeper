@@ -57,8 +57,8 @@ public class Board {
         int column;
         for (int i = 0; i < XMines; i++) {
             do {
-                line = random.nextInt(XMines);
-                column = random.nextInt(YMines);
+                line = random.nextInt(XMines) + 1;
+                column = random.nextInt(YMines) + 1;
 
                 draw = mines[line][column] == -1;
             }while (draw);
