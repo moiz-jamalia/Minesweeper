@@ -12,4 +12,11 @@ public class Game {
     public void Play(Board board){
         board.show();
     }
+
+    public void test(){
+        board = new Board();
+        Play(board);
+        System.out.println(Board.Xboard);
+        System.out.println(Board.Yboard);
+    }
 }

@@ -4,10 +4,12 @@ import java.util.Scanner;
 public class Board {
     public int[][] minen;
     public int[][] minen1;
-    public char[][] board;
+    public static char[][] board;
     public char[][] board1;
     public int Line;
     public int Column;
+    public static int Yboard = board.length;
+    public  static int Xboard = board[0].length;
     public String difficulties;
     Random random = new Random();
     Scanner input = new Scanner(System.in);
