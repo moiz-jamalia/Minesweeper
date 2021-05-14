@@ -55,10 +55,10 @@ public class Board {
         boolean draw;
         int line;
         int column;
-        for (int i = 0; i < mines.length; i++) {
+        for (int i = 0; i < XMines; i++) {
             do {
-                line = random.nextInt(mines.length) + 1;
-                column = random.nextInt(mines[0].length) + 1;
+                line = random.nextInt(XMines) + 1;
+                column = random.nextInt(YMines) + 1;
 
                 draw = mines[line][column] == -1;
             }while (draw);
@@ -67,16 +67,16 @@ public class Board {
     }
 
     public void PlaceMines(){
-        for (int i = 0; i < mines.length; i++){
-            for (int j = 0; j < mines.length; j++){
+        for (int i = 0; i < XMines; i++){
+            for (int j = 0; j < XMines; j++){
                 mines[i][j] = 0;
             }
         }
     }
 
     public void fillTips(){
-        for(int line=1 ; line < board.length - 1 ; line++) {
-            for (int column = 1; column < board[0].length - 1; column++) {
+        for(int line=1 ; line < Xboard - 1 ; line++) {
+            for (int column = 1; column < Yboard - 1; column++) {
                 for (int i = -1; i <= 1; i++) {
                     for (int j = -1; j <= 1; j++) {
                         if (mines[line][column] != -1) {
@@ -91,8 +91,8 @@ public class Board {
     }
 
     public void startBoard(){
-        for(int i=1 ; i < board.length ; i++) {
-            for (int j = 1; j < board[0].length; j++) {
+        for(int i=1 ; i < XMines ; i++) {
+            for (int j = 1; j < YMines; j++) {
                 board[i][j] = '_';
             }
         }
@@ -100,14 +100,14 @@ public class Board {
 
     public boolean win(){
         int count = 0;
-        for (int line = 1; line < board.length - 1; line++){
-            for (int column = 1; column < board[0].length - 1; column++){
+        for (int line = 1; line < Xboard - 1; line++){
+            for (int column = 1; column < Yboard - 1; column++){
                 if (board[line][column] == '_'){
                     count++;
                 }
             }
         }
-        if (count == board.length - 1){
+        if (count == Xboard - 1){
             return true;
         }else{
             return false;
@@ -115,9 +115,9 @@ public class Board {
     }
     public void show(){
         System.out.println("      lines");
-        for (int line = Board.Xboard - 1; line > 0; line--){
+        for (int line = Xboard - 1; line > 0; line--){
             System.out.print("    " + line + " ");
-            for (int column = 1; column < Board.Yboard - 1; column++){
+            for (int column = 1; column < Yboard - 1; column++){
                 System.out.print("    " + board[line][column]);
             }
         }
@@ -137,8 +137,8 @@ public class Board {
     public void showNeighbors(){
         for (int i = 1; i < 2; i++){
             for (int j = 1; j < 2; j++){
-                if ((mines[Line +i][Column +j] != 1) && (Line != 0 && Line != (board.length - 1) && Column != 0 && Column != (board[0].length - 1))){
-                    board[Line+i][Column+j] = Character.forDigit(mines[Line+i][Column+j], board.length);
+                if ((mines[Line +i][Column +j] != 1) && (Line != 0 && Line != (Xboard - 1) && Column != 0 && Column != (Yboard - 1))){
+                    board[Line+i][Column+j] = Character.forDigit(mines[Line+i][Column+j], Xboard);
                 }
             }
         }
