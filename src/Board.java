@@ -8,8 +8,8 @@ public class Board {
     public char[][] board1;
     public int Line;
     public int Column;
-    public static int Yboard = board.length;
-    public  static int Xboard = board[0].length;
+    public static int Yboard;
+    public  static int Xboard;
     public String difficulties;
     Random random = new Random();
     Scanner input = new Scanner(System.in);
@@ -39,6 +39,9 @@ public class Board {
         }
         minen = minen1;
         board = board1;
+
+        Xboard = board.length;
+        Yboard = board[0].length;
 //        PlaceMines();
 //        randomMines();
 //        fillTips();
