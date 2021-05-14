@@ -116,7 +116,7 @@ public class Board {
     public void show(){
         System.out.println("\n  lines");
         for (int line = Xboard - 1; line > 0; line--){
-            System.out.print("    " + line);
+            System.out.print("\t" + line);
             for (int column = 0; column < Yboard; column++){
                 System.out.print("    " + board[line][column]);
             }
@@ -126,7 +126,7 @@ public class Board {
         for (int column = 1; column < Yboard; column++){
             System.out.print("    " + column);
         }
-        System.out.println("\n                      Columns");
+        System.out.println("\n\t\t\t\t\t\t\tColumns");
     }
 
     public void showMines(){
