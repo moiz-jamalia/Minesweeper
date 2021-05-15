@@ -150,7 +150,8 @@ public class Board {
             if ((board[Line][Column] != '_') && (Line < (Xboard - 1) && Line > 0) && (Column < (Yboard - 1) && Column > 0)){
                 System.out.println("Field is already shown");
 
-            }else if (Line < 1 || Line > (Xboard - 2) || Column < 1 || Column > (Yboard - 2)){
+            }
+            if (Line < 1 || Line > (Xboard - 2) || Column < 1 || Column > (Yboard - 2)){
                 System.out.println("choose a number between 1 and " + Xboard + "for Line");
                 System.out.println("choose a number between 1 and " + Yboard + "for Column");
             }
