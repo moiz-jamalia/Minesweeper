@@ -136,16 +136,6 @@ public class Board {
         }
     }
 
-    public void showNeighbors(){
-        for (int i = 1; i < 2; i++){
-            for (int j = 1; j < 2; j++){
-                if ((mines[Line + i][Column + j] != 1) && (Line != 0 && Column != 9 && Line != 0 && Column != 9)){
-                    board[Line + i][Column + j] = Character.forDigit(mines[Line + i][Column + j], Yboard);
-                }
-            }
-        }
-    }
-
     public int getPosition(int Line, int Column){
         return mines[Line][Column];
     }
@@ -166,5 +156,15 @@ public class Board {
             }
         }while ((Line < 1 || Line > Xboard || Column < 1 || Column > Yboard) || (board[Line][Column] != '_'));
         return getPosition(Line, Column) == -1;
+    }
+
+    public void showNeighbors(){
+        for (int i = 1; i < 2; i++){
+            for (int j = 1; j < 2; j++){
+                if ((mines[Line + i][Column + j] != 1) && (Line != 0 && Column != 9 && Line != 0 && Column != 9)){
+                    board[Line + i][Column + j] = Character.forDigit(mines[Line + i][Column + j], Yboard);
+                }
+            }
+        }
     }
 }
