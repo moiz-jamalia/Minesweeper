@@ -139,7 +139,7 @@ public class Board {
     public void showNeighbors(){
         for (int i = 1; i < 2; i++){
             for (int j = 1; j < 2; j++){
-                if ((mines[XMines + i][YMines + j] != 1) && (XMines != 0 && XMines != 9 && YMines != 0 && YMines != 9)){
+                if ((mines[XMines + i][YMines + j] != 1) && (XMines != 0 && XMines != 9 && Xboard != 0 && Yboard != 9)){
                     board[Xboard + i][Yboard + j] = Character.forDigit(mines[XMines + i][YMines + j], Xboard);
                 }
             }
