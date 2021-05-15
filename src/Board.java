@@ -110,7 +110,7 @@ public class Board {
         return count == Xboard - 1;
     }
     public void show(){
-        System.out.println("\n  lines");
+        System.out.println("\n\tlines");
         for (int line = Xboard - 1; line > 0; line--){
             System.out.print("\t" + line);
             for (int column = 0; column < Yboard; column++){
