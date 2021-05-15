@@ -139,15 +139,15 @@ public class Board {
     public void showNeighbors(){
         for (int i = 1; i < 2; i++){
             for (int j = 1; j < 2; j++){
-                if ((mines[XMines + i][YMines + j] != 1) && (XMines != 0 && XMines != 9 && Xboard != 0 && Yboard != 9)){
-                    board[Xboard + i][Yboard + j] = Character.forDigit(mines[XMines + i][YMines + j], Xboard);
+                if ((mines[Line + i][Column + j] != 1) && (Line != 0 && Column != 9 && Line != 0 && Column != 9)){
+                    board[Line + i][Column + j] = Character.forDigit(mines[Line + i][Column + j], Yboard);
                 }
             }
         }
     }
 
-    public int getPosition(int XBoard, int YBoard){
-        return mines[XBoard][YBoard];
+    public int getPosition(int Line, int Column){
+        return mines[Line][Column];
     }
 
     public boolean setPosition(){
@@ -157,10 +157,10 @@ public class Board {
             System.out.print("\nColumn: ");
             Column = input.nextInt();
 
-            if ((board[Line][Column] != '_') && (Line < Xboard - 1 && Line > 0) && (Column < Yboard - 1 && Column > 0)){
+            if ((board[Line][Column] != '_') && (Line < (Xboard - 1) && Line > 0) && (Column < (Yboard - 1) && Column > 0)){
                 System.out.println("Field is already shown");
 
-            }else if (Line < 1 || Line > Xboard - 2 || Column < 1 || Column > Yboard - 2){
+            }else if (Line < 1 || Line > (Xboard - 2) || Column < 1 || Column > (Yboard - 2)){
                 System.out.println("choose a number between 1 and " + Xboard + "for Line");
                 System.out.println("choose a number between 1 and " + Yboard + "for Column");
             }
