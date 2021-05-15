@@ -143,7 +143,7 @@ public class Board {
             System.out.print("\nColumn: ");
             Column = input.nextInt();
 
-            if ((board[Line][Column] != '_') && (Line < (Xboard - 1) && Line > 0) && (Column < (Yboard - 1) && Column > 0)){
+            if ((board[Line][Column] != '_') && (Line < Xboard && Line > 0) && (Column < Yboard && Column > 0)){
                 System.out.println("Field is already shown");
 
             }
