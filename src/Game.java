@@ -1,7 +1,6 @@
 public class Game {
-    private Board board;
+    public Board board;
     boolean finish = false;
-    boolean win = true;
     int turn = 0;
 
     public void Minesweeper(){
