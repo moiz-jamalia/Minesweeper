@@ -4,8 +4,8 @@ import java.util.Scanner;
 public class Board {
     public int[][] mines;
     public char[][] board;
-    public int Line;
-    public int Column;
+    private int Line;
+    private int Column;
     public static int Yboard;
     public static int Xboard;
     public static int YMines;
@@ -75,7 +75,7 @@ public class Board {
     }
 
     public void fillTips(){
-        for(int line=1 ; line < Xboard - 1 ; line++) {
+        for(int line = 1 ; line < Xboard - 1 ; line++) {
             for (int column = 1; column < Yboard - 1; column++) {
                 for (int i = -1; i <= 1; i++) {
                     for (int j = -1; j <= 1; j++) {
