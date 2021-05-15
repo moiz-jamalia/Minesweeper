@@ -4,8 +4,8 @@ import java.util.Scanner;
 public class Board {
     public int[][] mines;
     public char[][] board;
-    private int Line = 0;
-    private int Column = 0;
+    private int Line;
+    private int Column;
     public static int Yboard;
     public static int Xboard;
     public static int YMines;
