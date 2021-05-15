@@ -8,8 +8,7 @@ public class Board {
     private int Column;
     public static int Yboard;
     public static int Xboard;
-    public static int YMines;
-    public static int XMines;
+    public static int AmountMines;
     public String difficulties;
     Random random = new Random();
     Scanner input = new Scanner(System.in);
@@ -23,27 +22,24 @@ public class Board {
                 Difficulties.easy();
                  Xboard = Difficulties.getXBoard();
                  Yboard = Difficulties.getYBoard();
-                 XMines = Difficulties.getXMines();
-                 YMines = Difficulties.getYMines();
+                 AmountMines = Difficulties.getAmountMines();
                  break;
 
             case "medium":
                 Difficulties.medium();
                 Xboard = Difficulties.getXBoard();
                 Yboard = Difficulties.getYBoard();
-                XMines = Difficulties.getXMines();
-                YMines = Difficulties.getYMines();
+                AmountMines = Difficulties.getAmountMines();
                 break;
 
             case "hard":
                 Difficulties.hard();
                 Xboard = Difficulties.getXBoard();
                 Yboard = Difficulties.getYBoard();
-                XMines = Difficulties.getXMines();
-                YMines = Difficulties.getYMines();
+                AmountMines = Difficulties.getAmountMines();
                 break;
         }
-        mines = new int[XMines][YMines];
+        mines = new int[AmountMines][AmountMines];
         board = new char[Xboard][Yboard];
         PlaceMines();
         randomMines();
@@ -55,10 +51,10 @@ public class Board {
         boolean draw;
         int line;
         int column;
-        for (int i = 0; i < XMines; i++) {
+        for (int i = 0; i < AmountMines; i++) {
             do {
-                line = random.nextInt(XMines);
-                column = random.nextInt(YMines);
+                line = random.nextInt(AmountMines);
+                column = random.nextInt(AmountMines);
 
                 draw = mines[line][column] == -1;
             }while (draw);
@@ -67,8 +63,8 @@ public class Board {
     }
 
     public void PlaceMines(){
-        for (int i = 0; i < XMines; i++){
-            for (int j = 0; j < XMines; j++){
+        for (int i = 0; i < AmountMines; i++){
+            for (int j = 0; j < AmountMines; j++){
                 mines[i][j] = 0;
             }
         }
@@ -126,8 +122,8 @@ public class Board {
     }
 
     public void showMines(){
-        for(int i=1 ; i < XMines; i++) {
-            for(int j=1 ; j < YMines; j++) {
+        for(int i = 1; i < AmountMines; i++) {
+            for(int j = 1; j < AmountMines; j++) {
                 if(mines[i][j] == -1) {
                     board[i][j]='*';
                 	show();
@@ -163,7 +159,7 @@ public class Board {
         for (int i = 1; i < 2; i++){
             for (int j = 1; j < 2; j++){
                 if ((mines[Line + i][Column + j] != 1) && (Line != 0 && Line != 9 && Column != 0 && Column != 9)){
-                    board[Line + i][Column + j] = Character.forDigit(mines[Line + i][Column + j], XMines);
+                    board[Line + i][Column + j] = Character.forDigit(mines[Line + i][Column + j], AmountMines);
                 }
             }
         }
