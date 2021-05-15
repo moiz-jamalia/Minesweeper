@@ -157,10 +157,10 @@ public class Board {
             System.out.print("\nColumn: ");
             Column = input.nextInt();
 
-            if ((board[Line][Column] != '_') && (Line < Xboard - 1 && Line > 0) && (Column < Yboard + 1 && Column > 0)){
+            if ((board[Line][Column] != '_') && (Line < Xboard - 1 && Line > 0) && (Column < Yboard - 1 && Column > 0)){
                 System.out.println("Field is already shown");
             }
-        }while ((Line < 1 || Line > Xboard - 1 || Column < 1 || Column > Yboard - 1) || (board[Line][Column] != '_'));
+        }while ((Line < 1 || Line > Xboard || Column < 1 || Column > Yboard) || (board[Line][Column] != '_'));
         return getPosition(Line, Column) == -1;
     }
 }
