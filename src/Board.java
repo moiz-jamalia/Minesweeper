@@ -163,7 +163,7 @@ public class Board {
         for (int i = 1; i < 2; i++){
             for (int j = 1; j < 2; j++){
                 if ((mines[Line + i][Column + j] != 1) && (Line != 0 && Line != 9 && Column != 0 && Column != 9)){
-                    board[Line + i][Column + j] = Character.forDigit(mines[Line + i][Column + j], Yboard);
+                    board[Line + i][Column + j] = Character.forDigit(mines[Line + i][Column + j], Xboard);
                 }
             }
         }
