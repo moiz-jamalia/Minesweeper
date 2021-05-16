@@ -43,8 +43,6 @@ public class Board {
         mines = new int[AmountMines];
         board = new char[Xboard][Yboard];
         startBoard();
-        randomMines();
-        showMines();
     }
 
     public int getXboard() {
@@ -64,11 +62,11 @@ public class Board {
     }
 
     public void randomMines(){
-        int Line;
         int Column;
             for (int i = 0; i < AmountMines; i++) {
-                Line = random.nextInt(Xboard);
                 Column = random.nextInt(Yboard);
+                board = new char[i][Column];
+
             }
 
     }
