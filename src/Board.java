@@ -60,7 +60,7 @@ public class Board {
         int position;
         for (int i = 0; i < AmountMines; i++) {
             do {
-                position = random.nextInt(AmountMines) + 1;
+                position = random.nextInt(AmountMines);
                 draw = mines[position] == -1;
             } while (draw);
             mines[position] = -1;
@@ -111,9 +111,11 @@ public class Board {
 
     public void showMines() {
         for (int i = 1; i < AmountMines; i++) {
-            if (mines[i] == -1) {
-                board[i][i] = '*';
-                show();
+            for (int j = 1; j < AmountMines; j++){
+                if (mines[i] == -1) {
+                    board[i][j] = '*';
+                    show();
+                }
             }
         }
     }
