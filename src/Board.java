@@ -12,7 +12,7 @@ public class Board {
     Random random = new Random();
     Scanner input = new Scanner(System.in);
     public Board(){
-        System.out.println("choose your difficulty: ");
+        System.out.println("choose your difficulty (easy, medium or hard): ");
         difficulties = input.next();
 
         switch (difficulties) {
@@ -43,6 +43,14 @@ public class Board {
         randomMines();
 //        fillTips();
         startBoard();
+    }
+
+    public int getXboard(){
+        return Xboard;
+    }
+
+    public int getYboard(){
+        return Yboard;
     }
 
     public void randomMines(){
@@ -80,8 +88,8 @@ public class Board {
 //    }
 
     public void startBoard(){
-        for(int i = 1 ; i < Xboard; i++) {
-            for (int j = 1; j < Yboard; j++) {
+        for(int i = 0; i < Xboard; i++) {
+            for (int j = 0; j < Yboard; j++) {
                 board[i][j] = '_';
             }
         }
@@ -108,7 +116,7 @@ public class Board {
             }
             System.out.println();
         }
-        System.out.print("\t\t ");
+        System.out.print("\t ");
         for (int column = 1; column < Yboard; column++){
             System.out.print("\t" + column);
         }
@@ -158,8 +166,8 @@ public class Board {
     }
 
     public ArrayList<char[][]> showNeighbour(Board board) {
-       int y = Difficulties.getYBoard();
-       int x = Difficulties.getXBoard();
+       int y = board.getYboard();
+       int x = board.getXboard();
 
        ArrayList<char[][]> b = new ArrayList<>();
        b.add(testBoard(x, y + 1));
