@@ -53,12 +53,6 @@ public class Board {
         return Yboard;
     }
 
-    public void PlaceMines() {
-        for (int i = 0; i < AmountMines; i++) {
-            mines[i] = 0;
-        }
-    }
-
     public void startBoard() {
         for (int i = 0; i < Xboard; i++) {
             for (int j = 0; j < Yboard; j++) {
