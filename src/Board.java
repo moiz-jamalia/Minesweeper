@@ -58,10 +58,18 @@ public class Board {
     public void randomMines() {
         boolean draw;
         int position;
+        int Line;
+        int Column;
         for (int i = 0; i < AmountMines; i++) {
             do {
                 position = random.nextInt(AmountMines);
-                draw = mines[position] == -1;
+                Line = random.nextInt(Xboard);
+                Column = random.nextInt(Yboard);
+                if(mines[position] == -1){
+                    board[Line][Column] = ((char) mines[position]);
+                    draw = true;
+                }
+                draw = false;
             } while (draw);
             mines[position] = -1;
         }
