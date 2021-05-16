@@ -12,11 +12,9 @@ public class Game {
             turn++;
             System.out.println("\nTurn "+turn);
             board.show();
-            finish = board.setPosition();
 
             if(!finish){
                 board.showNeighbour(board);
-                finish = board.win();
             }
 
         }while(!finish);
@@ -26,6 +24,5 @@ public class Game {
         } else {
             System.out.println("Mine! You lost!");
         }
-        board.showMines();
     }
 }

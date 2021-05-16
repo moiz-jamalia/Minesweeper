@@ -42,8 +42,6 @@ public class Board {
         }
         mines = new int[AmountMines];
         board = new char[Xboard][Yboard];
-        PlaceMines();
-        randomMines();
         startBoard();
     }
 
@@ -53,26 +51,6 @@ public class Board {
 
     public int getYboard() {
         return Yboard;
-    }
-
-    public void randomMines() {
-        boolean draw;
-        int position;
-        int Line;
-        int Column;
-        for (int i = 0; i < AmountMines; i++) {
-            do {
-                position = random.nextInt(AmountMines);
-                Line = random.nextInt(Xboard);
-                Column = random.nextInt(Yboard);
-                if(mines[position] == -1){
-                    board[Line][Column] = ((char) mines[position]);
-                    draw = true;
-                }
-                draw = false;
-            } while (draw);
-            mines[position] = -1;
-        }
     }
 
     public void PlaceMines() {
@@ -115,42 +93,6 @@ public class Board {
             System.out.print("\t" + column);
         }
         System.out.print("\t Columns");
-    }
-
-    public void showMines() {
-        for (int i = 1; i < AmountMines; i++) {
-            for (int j = 1; j < AmountMines; j++){
-                if (mines[i] == -1) {
-                    board[i][j] = '*';
-                    show();
-                }
-            }
-        }
-    }
-
-    public int getPosition(int Position) {
-        return mines[Position];
-    }
-
-    public boolean setPosition() {
-        int column;
-        int line;
-        do {
-            System.out.print("\nLine: ");
-            line = input.nextInt();
-            System.out.print("\nColumn: ");
-            column = input.nextInt();
-
-            if ((board[line][column] != '_') && (line < Xboard && line > 0) && (column < Yboard && column > 0)) {
-                System.out.println("Field is already shown");
-            }
-
-            if (line < 1 || line > (Xboard - 2) || column < 1 || column > (Yboard - 2)) {
-                System.out.println("choose a number between 1 and " + (Xboard - 1) + " for Line");
-                System.out.println("choose a number between 1 and " + (Yboard - 1) + " for Column");
-            }
-        } while ((line < 1 || line > Xboard || column < 1 || column > Yboard) || (board[line][column] != '_'));
-        return getPosition(line) == -1;
     }
 
     private char[][] testBoard(int Xboard, int Yboard) {
