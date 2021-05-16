@@ -162,6 +162,7 @@ public class Board {
                     board[Line + i][Column + j] = Character.forDigit(mines[Line + i][Column + j], AmountMines);
                 }
             }
+            showNeighbors();
         }
     }
 }
