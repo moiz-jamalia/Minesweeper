@@ -17,7 +17,7 @@ public class Game {
             finish = board.setPosition();
 
             if(!finish){
-                board.showNeighbors();
+                board.showNeighbour(board);
                 finish = board.win();
             }
 

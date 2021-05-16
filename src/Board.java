@@ -1,18 +1,16 @@
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
 public class Board {
-    public int[][] mines;
+    public int[] mines;
     public char[][] board;
-    private int Line;
-    private int Column;
     public static int Yboard;
     public static int Xboard;
     public static int AmountMines;
     public String difficulties;
     Random random = new Random();
     Scanner input = new Scanner(System.in);
-
     public Board(){
         System.out.println("choose your difficulty: ");
         difficulties = input.next();
@@ -39,52 +37,47 @@ public class Board {
                 AmountMines = Difficulties.getAmountMines();
                 break;
         }
-        mines = new int[AmountMines][AmountMines];
+        mines = new int[AmountMines];
         board = new char[Xboard][Yboard];
         PlaceMines();
         randomMines();
-        fillTips();
+//        fillTips();
         startBoard();
     }
 
     public void randomMines(){
         boolean draw;
-        int line;
-        int column;
+        int position;
         for (int i = 0; i < AmountMines; i++) {
             do {
-                line = random.nextInt(AmountMines);
-                column = random.nextInt(AmountMines);
-
-                draw = mines[line][column] == -1;
+                position = random.nextInt(AmountMines);
+                draw = mines[position] == -1;
             }while (draw);
-            mines[line][column] = -1;
+            mines[position] = -1;
         }
     }
 
     public void PlaceMines(){
-        for (int i = 0; i < AmountMines; i++){
-            for (int j = 0; j < AmountMines; j++){
-                mines[i][j] = 0;
-            }
+        for (int i = 0; i < AmountMines; i++) {
+            mines[i] = 0;
         }
     }
 
-    public void fillTips(){
-        for(int line = 1 ; line < Xboard - 1 ; line++) {
-            for (int column = 1; column < Yboard - 1; column++) {
-                for (int i = -1; i <= 1; i++) {
-                    for (int j = -1; j <= 1; j++) {
-                        if (mines[line][column] != -1) {
-                            if (mines[line + i][column + j] == -1) {
-                                mines[line][column]++;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
+//    public void fillTips(){
+//        for(int line = 1 ; line < Xboard - 1 ; line++) {
+//            for (int column = 1; column < Yboard - 1; column++) {
+//                for (int i = -1; i <= 1; i++) {
+//                    for (int j = -1; j <= 1; j++) {
+//                        if (mines[line][column] != -1) {
+//                            if (mines[line + i][column + j] == -1) {
+//                                mines[line][column]++;
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
 
     public void startBoard(){
         for(int i = 1 ; i < Xboard; i++) {
@@ -105,6 +98,7 @@ public class Board {
         }
         return count == Xboard - 1;
     }
+
     public void show(){
         System.out.println("\n\tlines");
         for (int line = Xboard - 1; line > 0; line--){
@@ -120,48 +114,72 @@ public class Board {
         }
         System.out.print("\t Columns");
     }
-
     public void showMines(){
-        for(int i = 1; i < AmountMines - 1; i++) {
-            for(int j = 1; j < AmountMines - 1; j++) {
-                if(mines[i][j] == -1) {
-                    board[i][j]='*';
-                	show();
-                }
+        for(int i = 1; i < AmountMines; i++) {
+            if(mines[i] == -1) {
+                board[i][i]='*';
+                show();
             }
         }
     }
 
-    public int getPosition(int Line, int Column){
-        return mines[Line][Column];
+    public int getPosition(int Position){
+        return mines[Position];
     }
 
     public boolean setPosition(){
+        int column;
+        int line;
         do {
             System.out.print("\nLine: ");
-            Line = input.nextInt();
+            line = input.nextInt();
             System.out.print("\nColumn: ");
-            Column = input.nextInt();
+            column = input.nextInt();
 
-            if ((board[Line][Column] != '_') && (Line < Xboard && Line > 0) && (Column < Yboard && Column > 0)){
+            if ((board[line][column] != '_') && (line < Xboard && line > 0) && (column < Yboard && column > 0)){
                 System.out.println("Field is already shown");
             }
 
-            if (Line < 1 || Line > (Xboard - 2) || Column < 1 || Column > (Yboard - 2)){
+            if (line < 1 || line > (Xboard - 2) || column < 1 || column > (Yboard - 2)){
                 System.out.println("choose a number between 1 and " + (Xboard - 1) + " for Line");
                 System.out.println("choose a number between 1 and " + (Yboard - 1)+ " for Column");
             }
-        }while ((Line < 1 || Line > Xboard || Column < 1 || Column > Yboard) || (board[Line][Column] != '_'));
-        return getPosition(Line, Column) == -1;
+        }while ((line < 1 || line > Xboard || column < 1 || column > Yboard) || (board[line][column] != '_'));
+        return getPosition(line) == -1;
     }
 
-    public void showNeighbors(){
-        for (int i = 1; i < 2; i++){
-            for (int j = 1; j < 2; j++){
-                if ((mines[Line + i][Column + j] != 1) && (Line != 0 && Line != 9 && Column != 0 && Column != 9)){
-                    board[Line + i][Column + j] = Character.forDigit(mines[Line + i][Column + j], AmountMines);
-                }
-            }
+    private char[][] testBoard(int Xboard, int Yboard){
+        try {
+            board = new char[Xboard][Yboard];
+            return board;
+        }catch (Exception e){
+            return null;
         }
     }
+
+    public ArrayList<char[][]> showNeighbour(Board board) {
+       int y = Difficulties.getYBoard();
+       int x = Difficulties.getXBoard();
+
+       ArrayList<char[][]> b = new ArrayList<>();
+       b.add(testBoard(x, y + 1));
+       b.add(testBoard(x, y - 1));
+       b.add(testBoard(x - 1, y));
+       b.add(testBoard(x - 1, y + 1));
+       b.add(testBoard(x - 1, y - 1));
+       b.add(testBoard(x + 1, y));
+       b.add(testBoard(x + 1, y + 1));
+       b.add(testBoard(x + 1, y - 1));
+        return null;
+    }
+
+//    public void showNeighbors(){
+//        for (int i = 1; i < 2; i++){
+//            for (int j = 1; j < 2; j++){
+//                if ((mines[Line + i][Column + j] != 1) && (Line != 0 && Line != 9 && Column != 0 && Column != 9)){
+//                    board[Line + i][Column + j] = Character.forDigit(mines[Line + i][Column + j], AmountMines);
+//                }
+//            }
+//        }
+//    }
 }
