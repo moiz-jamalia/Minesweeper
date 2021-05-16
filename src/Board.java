@@ -109,7 +109,7 @@ public class Board {
         System.out.println("\n\tlines");
         for (int line = Xboard - 1; line > 0; line--){
             System.out.print("\t" + line);
-            for (int column = 0; column < Yboard; column++){
+            for (int column = 0; column < Yboard - 1; column++){
                 System.out.print("\t" + board[line][column]);
             }
             System.out.println();
