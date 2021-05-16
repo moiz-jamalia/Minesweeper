@@ -1,6 +1,8 @@
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class Board {
     public int[] mines;
@@ -163,6 +165,6 @@ public class Board {
         b.add(testBoard(x + 1, y));
         b.add(testBoard(x + 1, y + 1));
         b.add(testBoard(x + 1, y - 1));
-        return null;
+        return b.stream().filter(Objects::nonNull).collect(Collectors.toCollection(ArrayList::new));
     }
 }
