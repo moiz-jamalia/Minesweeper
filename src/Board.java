@@ -161,7 +161,6 @@ public class Board {
                 if ((mines[Line + i][Column + j] != 1) && (Line != 0 && Line != 9 && Column != 0 && Column != 9)){
                     board[Line + i][Column + j] = Character.forDigit(mines[Line + i][Column + j], AmountMines);
                 }
-                show();
             }
         }
     }
