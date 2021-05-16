@@ -58,7 +58,7 @@ public class Board {
         int position;
         for (int i = 0; i < AmountMines; i++) {
             do {
-                position = random.nextInt(AmountMines);
+                position = random.nextInt(AmountMines) + 1;
                 draw = mines[position] == -1;
             } while (draw);
             mines[position] = -1;
