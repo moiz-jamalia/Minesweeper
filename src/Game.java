@@ -23,10 +23,9 @@ public class Game {
 
         if(board.win()){
             System.out.println("Congratulations, you let the "+ Board.Xboard +"x" + Board.Yboard + " fields with the mines in " + turn + " turns");
-            board.showMines();
         } else {
             System.out.println("Mine! You lost!");
-            board.showMines();
         }
+        board.showMines();
     }
 }
