@@ -5,8 +5,8 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class Board {
-    public int[] mines;
-    public char[][] board;
+    public static int[] mines;
+    public static char[][] board;
     public static int Yboard;
     public static int Xboard;
     public static int AmountMines;
@@ -43,6 +43,8 @@ public class Board {
         mines = new int[AmountMines];
         board = new char[Xboard][Yboard];
         startBoard();
+        randomMines();
+        showMines();
     }
 
     public int getXboard() {
@@ -57,6 +59,26 @@ public class Board {
         for (int i = 0; i < Xboard; i++) {
             for (int j = 0; j < Yboard; j++) {
                 board[i][j] = '_';
+            }
+        }
+    }
+
+    public void randomMines(){
+        int Line;
+        int Column;
+            for (int i = 0; i < AmountMines; i++) {
+                Line = random.nextInt(Xboard);
+                Column = random.nextInt(Yboard);
+            }
+
+    }
+
+    public static void showMines(){
+        for (int i = 1; i < AmountMines; i++){
+            for (int j = 1; j < AmountMines; j++){
+                if (mines[i] == -1){
+                    board[i][j] = '*';
+                }
             }
         }
     }
@@ -87,6 +109,18 @@ public class Board {
             System.out.print("\t" + column);
         }
         System.out.print("\t Columns");
+    }
+
+    public boolean setPosition(){
+        int Line;
+        int Column;
+            System.out.println("Line: ");
+            Line = input.nextInt();
+            System.out.println("Column: ");
+            Column = input.nextInt();
+
+
+        return false;
     }
 
     private char[][] testBoard(int Xboard, int Yboard) {
