@@ -12,7 +12,7 @@ public class Game {
     public void Play(Board board){
         do{
             turn++;
-            System.out.println("Turn "+turn);
+            System.out.println("\nTurn "+turn);
             board.show();
             finish = board.setPosition();
 
