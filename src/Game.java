@@ -1,12 +1,10 @@
 public class Game {
-    public Board board;
+    public Board board = new Board();
     boolean finish = false;
     int turn = 0;
 
     public void Minesweeper(){
-        board = new Board();
         Play(board);
-
     }
 
     public void Play(Board board){
