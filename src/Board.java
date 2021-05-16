@@ -43,8 +43,6 @@ public class Board {
         mines = new int[AmountMines];
         board = new char[Xboard][Yboard];
         startBoard();
-        randomMines();
-        showMines();
     }
 
     public int getXboard() {
