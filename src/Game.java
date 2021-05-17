@@ -11,16 +11,15 @@ public class Game {
         do{
             turn++;
             System.out.println("\nTurn "+turn);
-            board.show();
+            BoardFunction.show();
 
             if(!finish){
-                board.showNeighbour(board);
-
+                BoardFunction.showNeighbour(board);
             }
 
         }while(!finish);
 
-        if(board.win()){
+        if(BoardFunction.win()){
             System.out.println("Congratulations, you let the "+ Board.Xboard +"x" + Board.Yboard + " fields with the mines in " + turn + " turns");
         } else {
             System.out.println("Mine! You lost!");
