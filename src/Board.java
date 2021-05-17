@@ -76,21 +76,26 @@ public class Board {
         }
     }
 
-    public static void show() {
-        System.out.println("\n\tlines");
-        for (int line = Xboard - 1; line > 0; line--) {
-            System.out.print("\t" + line);
-            for (int column = 0; column < Yboard - 1; column++) {
-                System.out.print("\t_");
+        public static void show() {
+            System.out.println("\n\tlines");
+            for (int line = Xboard - 1; line > 0; line--) {
+                System.out.print("\t" + line);
+                for (int column = 0; column < Yboard - 1; column++) {
+                    System.out.print("\t_");
+                    if (board[Xboard][Yboard].isBomb = true){
+                        System.out.print("\t*");
+                    }else {
+                        System.out.println("\t_");
+                    }
+                }
+                System.out.println();
             }
-            System.out.println();
+            System.out.print("\t ");
+            for (int column = 1; column < Yboard; column++) {
+                System.out.print("\t" + column);
+            }
+            System.out.print("\t Columns");
         }
-        System.out.print("\t ");
-        for (int column = 1; column < Yboard; column++) {
-            System.out.print("\t" + column);
-        }
-        System.out.print("\t Columns");
-    }
 
     private Field[][] testBoard(int Xboard, int Yboard) {
         try {

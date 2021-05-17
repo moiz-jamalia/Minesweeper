@@ -11,7 +11,7 @@ public class Game {
         do{
             turn++;
             System.out.println("\nTurn "+turn);
-            board.show();
+            Board.show();
 
             if(!finish){
                 board.showNeighbour(board);
