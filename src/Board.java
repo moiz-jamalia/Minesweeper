@@ -61,7 +61,7 @@ public class Board {
             }
         }
     }
-
+    // Many fragen wie es funktioniert
     public void RandomMines(){
         int Line;
         int Column;
@@ -75,7 +75,7 @@ public class Board {
             board[Line][Column].SetIsBomb(true);
         }
     }
-
+    //Problem
     public boolean win(){
         int count = 0;
         for (int line = 1; line < Xboard - 1; line++){
@@ -88,6 +88,7 @@ public class Board {
         return count == Xboard - 1;
     }
 
+    //nochmals anschauen und korrigieren
     public void show() {
         System.out.println("\n\tlines");
         for (int line = Xboard - 1; line > 0; line--) {
@@ -103,7 +104,7 @@ public class Board {
         }
         System.out.print("\t Columns");
     }
-
+    //komplett neu programmieren (ab if-Schleife)
     public boolean setPosition(){
         int Line;
         int Column;
@@ -139,6 +140,7 @@ public class Board {
         }
     }
 
+    //Schauen wie man es anwendet
     public ArrayList<Field[][]> showNeighbour(Board board) {
         int y = board.getYboard();
         int x = board.getXboard();
