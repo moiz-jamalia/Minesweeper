@@ -11,18 +11,18 @@ public class Game {
         do{
             turn++;
             System.out.println("\nTurn "+turn);
-            BoardFunction.show();
+            board.show();
 
             if(!finish){
-                BoardFunction.showNeighbour(board);
+                board.showNeighbour(board);
             }
 
         }while(!finish);
 
-        if(BoardFunction.win()){
-            System.out.println("Congratulations, you let the "+ Board.Xboard +"x" + Board.Yboard + " fields with the mines in " + turn + " turns");
-        } else {
-            System.out.println("Mine! You lost!");
-        }
+//        if(board.win()){
+//            System.out.println("Congratulations, you let the "+ Board.Xboard +"x" + Board.Yboard + " fields with the mines in " + turn + " turns");
+//        } else {
+//            System.out.println("Mine! You lost!");
+//        }
     }
 }
