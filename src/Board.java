@@ -65,7 +65,7 @@ public class Board {
         int Column;
             for (int i = 0; i < AmountMines; i++) {
                 Column = random.nextInt(Yboard);
-                board = new char[i][Column];
+                char[][] Mine = new char[i][Column];
 
             }
 
