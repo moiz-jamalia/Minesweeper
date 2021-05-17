@@ -69,33 +69,66 @@ public class Board {
             Line = random.nextInt(Xboard);
             Column = random.nextInt(Yboard);
             if (board[Line][Column].GetIsBomb()) {
-                RandomMines();
-            } else {
-                board[Line][Column].SetIsBomb(true);
+                Line = random.nextInt(Xboard);
+                Column = random.nextInt(Yboard);
             }
+            board[Line][Column].SetIsBomb(true);
         }
     }
 
-        public static void show() {
-            System.out.println("\n\tlines");
-            for (int line = Xboard - 1; line > 0; line--) {
-                System.out.print("\t" + line);
-                for (int column = 0; column < Yboard - 1; column++) {
-                    System.out.print("\t_");
-                    if (board[Xboard][Yboard].isBomb = true){
-                        System.out.print("\t*");
-                    }else {
-                        System.out.println("\t_");
-                    }
+    public boolean win(){
+        int count = 0;
+        for (int line = 1; line < Xboard - 1; line++){
+            for (int column = 1; column < Yboard - 1; column++){
+                if (board[line][column].GetIsBomb()){
+                    count++;
                 }
-                System.out.println();
             }
-            System.out.print("\t ");
-            for (int column = 1; column < Yboard; column++) {
-                System.out.print("\t" + column);
-            }
-            System.out.print("\t Columns");
         }
+        return count == Xboard - 1;
+    }
+
+    public void show() {
+        System.out.println("\n\tlines");
+        for (int line = Xboard - 1; line > 0; line--) {
+            System.out.print("\t" + line);
+            for (int column = 0; column < Yboard - 1; column++) {
+                System.out.print("\t_");
+            }
+            System.out.println();
+        }
+        System.out.print("\t ");
+        for (int column = 1; column < Yboard; column++) {
+            System.out.print("\t" + column);
+        }
+        System.out.print("\t Columns");
+    }
+
+    public boolean setPosition(){
+        int Line;
+        int Column;
+        do {
+            System.out.print("\nLine: ");
+            Line = input.nextInt();
+            System.out.print("\nColumn: ");
+            Column = input.nextInt();
+
+            if ((board[Line][Column].isBomb = true) && ((Line < Xboard && Line > 0) && (Column < Yboard && Column > 0))) {
+                System.out.println("Field is already shown");
+                show();
+            }
+            if (Line < 1 || Line > (Xboard - 2) || Column < 1 || Column > (Yboard - 2)) {
+                System.out.println("choose a number between 1 and " + (Xboard - 1) + " for Line");
+                System.out.println("choose a number between 1 and " + (Yboard - 1) + " for Column");
+            }
+        }while ((Line < 1 || Line > Xboard || Column < 1 || Column > Yboard) || (board[Line][Column].GetIsBomb()));
+
+        if (board[Line][Column].GetIsBomb()){
+            return true;
+        }else{
+            return false;
+        }
+    }
 
     private Field[][] testBoard(int Xboard, int Yboard) {
         try {

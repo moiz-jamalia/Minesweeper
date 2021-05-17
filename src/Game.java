@@ -11,7 +11,8 @@ public class Game {
         do{
             turn++;
             System.out.println("\nTurn "+turn);
-            Board.show();
+            board.show();
+            finish = board.setPosition();
 
             if(!finish){
                 board.showNeighbour(board);
@@ -19,10 +20,10 @@ public class Game {
 
         }while(!finish);
 
-//        if(board.win()){
-//            System.out.println("Congratulations, you let the "+ Board.Xboard +"x" + Board.Yboard + " fields with the mines in " + turn + " turns");
-//        } else {
-//            System.out.println("Mine! You lost!");
-//        }
+        if(board.win()){
+            System.out.println("Congratulations, you let the "+ Board.Xboard +"x" + Board.Yboard + " fields with the mines in " + turn + " turns");
+        } else {
+            System.out.println("Mine! You lost!");
+        }
     }
 }
