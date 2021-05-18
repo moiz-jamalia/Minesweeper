@@ -61,7 +61,7 @@ public class Board {
             }
         }
     }
-
+    // Many fragen wie es funktioniert
     public void RandomMines(){
         int Line;
         int Column;
@@ -75,7 +75,7 @@ public class Board {
             board[Line][Column].SetIsBomb(true);
         }
     }
-
+    //Problem
     public boolean win(){
         int count = 0;
         for (int line = 1; line < Xboard - 1; line++){
@@ -88,6 +88,7 @@ public class Board {
         return count == Xboard - 1;
     }
 
+    //nochmals anschauen und korrigieren
     public void show() {
         System.out.println("\n\tlines");
         for (int line = Xboard - 1; line > 0; line--) {
@@ -103,7 +104,7 @@ public class Board {
         }
         System.out.print("\t Columns");
     }
-
+    //komplett neu programmieren (ab if-Schleife)
     public boolean setPosition(){
         int Line;
         int Column;
@@ -113,7 +114,7 @@ public class Board {
             System.out.print("\nColumn: ");
             Column = input.nextInt();
 
-            if ((board[Line][Column].isBomb = true) && ((Line < Xboard && Line > 0) && (Column < Yboard && Column > 0))) {
+            if (((Line >= Xboard || Line <= 0) || (Column >= Yboard || Column <= 0))) {
                 System.out.println("Field is already shown");
                 show();
             }
@@ -121,16 +122,12 @@ public class Board {
                 System.out.println("choose a number between 1 and " + (Xboard - 1) + " for Line");
                 System.out.println("choose a number between 1 and " + (Yboard - 1) + " for Column");
             }
-        }while ((Line < 1 || Line > Xboard || Column < 1 || Column > Yboard) || (board[Line][Column].GetIsBomb()));
+        }while (!(Line >= 1 && Line <= Xboard && Column >= 1 && Column <= Yboard) || (board[Line][Column].GetIsBomb()));
 
-        if (board[Line][Column].GetIsBomb()){
-            return true;
-        }else{
-            return false;
-        }
+        return board[Line][Column].GetIsBomb();
     }
 
-    private Field[][] testBoard(int Xboard, int Yboard) {
+    public Field[][] testBoard(int Xboard, int Yboard) {
         try {
             board = new Field[Xboard][Yboard];
             return board;
@@ -139,6 +136,7 @@ public class Board {
         }
     }
 
+    //Schauen wie man es anwendet
     public ArrayList<Field[][]> showNeighbour(Board board) {
         int y = board.getYboard();
         int x = board.getXboard();
