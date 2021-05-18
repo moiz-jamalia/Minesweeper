@@ -1,8 +1,6 @@
 import java.util.ArrayList;
-import java.util.Objects;
 import java.util.Random;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class Board {
     public static int[] mines;
@@ -102,27 +100,42 @@ public class Board {
         }
         System.out.print("\t Columns");
     }
+
+
+
     //komplett neu programmieren (ab if-Schleife)
     public boolean setPosition(){
         int Line;
         int Column;
+        Field field = null;
         do {
             System.out.print("\nLine: ");
             Line = input.nextInt();
             System.out.print("\nColumn: ");
             Column = input.nextInt();
 
-            if (((Line >= Xboard || Line <= 0) || (Column >= Yboard || Column <= 0))) {
+            try {
+                 field = getField(Line, Column);
+            }catch (Exception e){
+                System.out.println("wrong input");
+            }
+
+            assert field != null;
+
+            if ((field.GetFieldSymbol() == '_') && ((Line >= Xboard || Line <= 0) || (Column >= Yboard || Column <= 0))) {
                 System.out.println("Field is already shown");
-                show();
             }
             if (Line < 1 || Line > (Xboard - 2) || Column < 1 || Column > (Yboard - 2)) {
-                System.out.println("choose a number between 1 and " + (Xboard - 1) + " for Line");
-                System.out.println("choose a number between 1 and " + (Yboard - 1) + " for Column");
+                System.out.println("\n choose a number between 1 and " + (Xboard - 1) + " for Line");
+                System.out.println("\n choose a number between 1 and " + (Yboard - 1) + " for Column");
             }
-        }while ((Line >= 1 && Line <= Xboard && Column >= 1 && Column <= Yboard) || (board[Line][Column].GetIsBomb())); // board[][] = '_'
+        }while ((Line >= 1 && Line <= Xboard && Column >= 1 && Column <= Yboard) || (field.GetFieldSymbol() == '_')); // board[][] = '_'
 
-        return board[Line][Column].GetIsBomb();
+        return field == getField(Line, Column);
+    }
+
+    private Field getField(int x, int y){
+        return board[x][y];
     }
 
     public Field[][] testBoard(int Xboard, int Yboard) {
@@ -148,6 +161,6 @@ public class Board {
         b.add(testBoard(x + 1, y));
         b.add(testBoard(x + 1, y + 1));
         b.add(testBoard(x + 1, y - 1));
-        return b.stream().filter(Objects::nonNull).collect(Collectors.toCollection(ArrayList::new));
+        return b;
     }
 }

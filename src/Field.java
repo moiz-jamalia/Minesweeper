@@ -1,22 +1,22 @@
 public class Field {
-    public char X;
-    public char Y;
+    public static int X;
+    public static int Y;
     public boolean isBomb = false;
-    private char fieldsymbol = '_';
+    private final char fieldsymbol = '_';
 
-    public void SetX(char X){
-        this.X = X;
+    public static void SetX(char X){
+        Field.X = X;
     }
 
-    public char GetX(){
+    public static int GetX(){
         return X;
     }
 
-    public void SetY(char Y){
-        this.Y = Y;
+    public static void SetY(char Y){
+        Field.Y = Y;
     }
 
-    public char GetY(){
+    public static int GetY(){
         return Y;
     }
 
