@@ -66,12 +66,10 @@ public class Board {
         int Line;
         int Column;
         for(int i = 0; i < AmountMines; i++){
-            Line = random.nextInt(Xboard);
-            Column = random.nextInt(Yboard);
-            if (board[Line][Column].GetIsBomb()) {
+            do {
                 Line = random.nextInt(Xboard);
                 Column = random.nextInt(Yboard);
-            }
+            }while (board[Line][Column].GetIsBomb());
             board[Line][Column].SetIsBomb(true);
         }
     }
@@ -80,7 +78,7 @@ public class Board {
         int count = 0;
         for (int line = 1; line < Xboard - 1; line++){
             for (int column = 1; column < Yboard - 1; column++){
-                if (board[line][column].GetIsBomb()){
+                if (board[line][column].GetIsBomb()){ // board[line][column] = '_'
                     count++;
                 }
             }
@@ -122,7 +120,7 @@ public class Board {
                 System.out.println("choose a number between 1 and " + (Xboard - 1) + " for Line");
                 System.out.println("choose a number between 1 and " + (Yboard - 1) + " for Column");
             }
-        }while (!(Line >= 1 && Line <= Xboard && Column >= 1 && Column <= Yboard) || (board[Line][Column].GetIsBomb()));
+        }while ((Line >= 1 && Line <= Xboard && Column >= 1 && Column <= Yboard) || (board[Line][Column].GetIsBomb())); // board[][] = '_'
 
         return board[Line][Column].GetIsBomb();
     }
