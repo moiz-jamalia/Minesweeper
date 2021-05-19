@@ -77,12 +77,19 @@ public class Board {
         return count == AmountMines;
     }
 
-    //nochmals anschauen und korrigieren
+    // ab for (int i = 0; i < 9; i++) weiter machen!
     public void show() {
+        int x = Xboard - 1;
+        int y = Yboard - 1;
+        Field f = new Field(x,y);
+        ArrayList<Field> neighbours = getNeighbours(f);
         System.out.println("\n\tlines");
         for (int line = Xboard - 1; line > 0; line--) {
             System.out.print("\t" + line);
             for (int column = 0; column < Yboard - 1; column++) {
+                for (int i = 0; i < 9; i++){
+                    neighbours.get(i);
+                }
                 System.out.print("\t" +Field.fieldsymbol);
             }
             System.out.println();
@@ -103,7 +110,6 @@ public class Board {
         }
     }
 
-    //getMine wird einmal ausgeführt dann nicht mehr
     public void setPosition(){
         int Line;
         int Column;
@@ -133,19 +139,19 @@ public class Board {
         return MinePosition == -1;
     }
 
-    public static Field[][] testBoard(int Xboard, int Yboard) {
+    public static Field testBoard(int Xboard, int Yboard) {
         try {
-            return new Field[Xboard][Yboard];
+            return new Field(Xboard,Yboard);
         } catch (Exception e) {
             return null;
         }
     }
 
-    public ArrayList<Field[][]> getNeighbour(Field field) {
+    public ArrayList<Field> getNeighbours(Field field) {
         int y = field.getY();
         int x =field.getX();
 
-        ArrayList<Field[][]> neighbours = new ArrayList<>();
+        ArrayList<Field> neighbours = new ArrayList<>();
         neighbours.add(testBoard(x, y + 1));
         neighbours.add(testBoard(x, y - 1));
         neighbours.add(testBoard(x - 1, y));
@@ -155,5 +161,13 @@ public class Board {
         neighbours.add(testBoard(x + 1, y + 1));
         neighbours.add(testBoard(x + 1, y - 1));
         return neighbours;
+    }
+
+    public void showNeighbours(Field field){
+        ArrayList<Field> neighbours = getNeighbours(field);
+
+        for (Field f : neighbours){
+            f.setIsShown(true);
+        }
     }
 }

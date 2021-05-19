@@ -18,6 +18,7 @@ public class Game {
 
             if (!finish){
                finish = board.win();
+               board.show();
             }
 
         }while (!finish);

@@ -6,6 +6,7 @@ public class Field {
     private int X;
     private int Y;
     public boolean isBomb = false;
+    public boolean isShown = false;
     public static char fieldsymbol = '_';
 
     public Field(int x, int y){
@@ -13,24 +14,24 @@ public class Field {
         this.Y = y;
     }
 
-    public void SetX(int X){
-        this.X = X;
-    }
-
     public int getX(){
         return X;
-    }
-
-    public void setY(int Y){
-        this.Y = Y;
     }
 
     public int getY(){
         return Y;
     }
 
+    public void setIsShown(boolean shown){
+        this.isShown = shown;
+    }
+
     public static char getFieldsymbol(){
         return fieldsymbol;
+    }
+
+    public static void setFieldsymbol(char symbol){
+        fieldsymbol = symbol;
     }
 
     public void setIsBomb(boolean Bomb){
