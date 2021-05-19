@@ -8,18 +8,18 @@ public class Game {
     }
 
     public void Play(Board board){
-        do{
+        do {
             turn++;
-            System.out.println("\nTurn "+turn);
+            System.out.println("\nturn: "+turn);
             board.show();
             finish = board.setPosition();
+            board.showNeighbour(board);
 
-            if(!finish){
-                board.showNeighbour(board);
-                finish = board.win();
+            if (!finish){
+               finish = board.win();
             }
 
-        }while(!finish);
+        }while (!finish);
 
         if(board.win()){
             System.out.println("Congratulations, you let the "+ Board.Xboard +"x" + Board.Yboard + " fields with the mines in " + turn + " turns");

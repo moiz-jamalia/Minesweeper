@@ -2,33 +2,33 @@ public class Field {
     public static int X;
     public static int Y;
     public boolean isBomb = false;
-    private final char fieldsymbol = '_';
+    public static char fieldsymbol = '_';
 
     public static void SetX(int X){
         Field.X = X;
     }
 
-    public static int GetX(){
+    public static int getX(){
         return X;
     }
 
-    public static void SetY(int Y){
+    public static void setY(int Y){
         Field.Y = Y;
     }
 
-    public static int GetY(){
+    public static int getY(){
         return Y;
     }
 
-    public void SetIsBomb(boolean Bomb){
+    public static char getFieldsymbol(){
+        return fieldsymbol;
+    }
+
+    public void setIsBomb(boolean Bomb){
         this.isBomb = Bomb;
     }
 
-    public boolean GetIsBomb(){
+    public boolean getIsBomb(){
         return isBomb;
-    }
-
-    public char GetFieldSymbol(){
-        return fieldsymbol;
     }
 }
