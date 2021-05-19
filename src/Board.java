@@ -45,14 +45,6 @@ public class Board {
         RandomMines();
     }
 
-    public int getXboard() {
-        return Xboard;
-    }
-
-    public int getYboard() {
-        return Yboard;
-    }
-
     public void startBoard() {
         for (int i = 0; i < Xboard; i++) {
             for (int j = 0; j < Yboard; j++) {
@@ -127,12 +119,12 @@ public class Board {
                 System.out.println("Field is already shown");
             }
 
-            if (Line < 1 || Line >= (Xboard - 1) || Column < 1 || Column >= (Yboard - 1)){
+            if (Line < 1 || Line >= Xboard || Column < 1 || Column >= Yboard){
                 System.out.println("Choose a number between 1 and " + (Xboard - 1) + " for Line");
                 System.out.println("Choose a number between 1 and " + (Yboard - 1) + " for Column");
             }
 
-        }while ((Line < 1 || Line > Xboard || Column < 1 || Column > Yboard) || (Field.getFieldsymbol() != '_'));
+        }while ((Line < 1 || Line >= Xboard || Column < 1 || Column >= Yboard) || (Field.getFieldsymbol() != '_'));
 
         MinePosition = getMine(Line,Column);
     }
@@ -153,15 +145,15 @@ public class Board {
         int y = field.getY();
         int x =field.getX();
 
-        ArrayList<Field[][]> neighbour = new ArrayList<>();
-        neighbour.add(testBoard(x, y + 1));
-        neighbour.add(testBoard(x, y - 1));
-        neighbour.add(testBoard(x - 1, y));
-        neighbour.add(testBoard(x - 1, y + 1));
-        neighbour.add(testBoard(x - 1, y - 1));
-        neighbour.add(testBoard(x + 1, y));
-        neighbour.add(testBoard(x + 1, y + 1));
-        neighbour.add(testBoard(x + 1, y - 1));
-        return neighbour;
+        ArrayList<Field[][]> neighbours = new ArrayList<>();
+        neighbours.add(testBoard(x, y + 1));
+        neighbours.add(testBoard(x, y - 1));
+        neighbours.add(testBoard(x - 1, y));
+        neighbours.add(testBoard(x - 1, y + 1));
+        neighbours.add(testBoard(x - 1, y - 1));
+        neighbours.add(testBoard(x + 1, y));
+        neighbours.add(testBoard(x + 1, y + 1));
+        neighbours.add(testBoard(x + 1, y - 1));
+        return neighbours;
     }
 }
