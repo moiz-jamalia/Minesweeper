@@ -76,7 +76,7 @@ public class Board {
         int count = 0;
         for (int line = 1; line < Xboard - 1; line++){
             for (int column = 1; column < Yboard - 1; column++){
-                if (board[line][column].GetIsBomb()){ // board[line][column] = '_'
+                if (board[line][column].GetFieldSymbol() == '_'){ // board[line][column] = '_'
                     count++;
                 }
             }
@@ -115,7 +115,7 @@ public class Board {
             Column = input.nextInt();
 
             try {
-                 field = getField(Line, Column);
+                 getField(Line, Column);
             }catch (Exception e){
                 System.out.println("wrong input");
             }
@@ -131,11 +131,20 @@ public class Board {
             }
         }while ((Line >= 1 && Line <= Xboard && Column >= 1 && Column <= Yboard) || (field.GetFieldSymbol() == '_')); // board[][] = '_'
 
-        return field == getField(Line, Column);
+        if (field.isBomb == false){
+            return true;
+        }else{
+            return false;
+        }
     }
 
-    private Field getField(int x, int y){
-        return board[x][y];
+    private boolean getField(int x, int y){
+        board = new Field[x][y];
+        if (board[x][y].isBomb == false){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     public Field[][] testBoard(int Xboard, int Yboard) {

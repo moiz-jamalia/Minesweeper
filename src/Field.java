@@ -4,7 +4,7 @@ public class Field {
     public boolean isBomb = false;
     private final char fieldsymbol = '_';
 
-    public static void SetX(char X){
+    public static void SetX(int X){
         Field.X = X;
     }
 
@@ -12,7 +12,7 @@ public class Field {
         return X;
     }
 
-    public static void SetY(char Y){
+    public static void SetY(int Y){
         Field.Y = Y;
     }
 

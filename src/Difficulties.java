@@ -1,7 +1,7 @@
 public class Difficulties {
     public static int AmountMines;
-    public static char XBoard;
-    public static char YBoard;
+    public static int XBoard;
+    public static int YBoard;
 
 
     public static void easy(){
@@ -32,11 +32,11 @@ public class Difficulties {
         return AmountMines;
     }
 
-    public static char getXBoard() {
+    public static int getXBoard() {
         return XBoard;
     }
 
-    public static char getYBoard(){
+    public static int getYBoard(){
         return YBoard;
     }
 }
