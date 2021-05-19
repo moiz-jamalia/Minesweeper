@@ -1,22 +1,31 @@
+import java.util.ArrayList;
+import java.util.Objects;
+import java.util.stream.Collectors;
+
 public class Field {
-    public static int X;
-    public static int Y;
+    private int X;
+    private int Y;
     public boolean isBomb = false;
     public static char fieldsymbol = '_';
 
-    public static void SetX(int X){
-        Field.X = X;
+    public Field(int x, int y){
+        this.X = x;
+        this.Y = y;
     }
 
-    public static int getX(){
+    public void SetX(int X){
+        this.X = X;
+    }
+
+    public int getX(){
         return X;
     }
 
-    public static void setY(int Y){
-        Field.Y = Y;
+    public void setY(int Y){
+        this.Y = Y;
     }
 
-    public static int getY(){
+    public int getY(){
         return Y;
     }
 

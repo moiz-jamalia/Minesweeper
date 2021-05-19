@@ -1,8 +1,6 @@
 import java.util.ArrayList;
-import java.util.Objects;
 import java.util.Random;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class Board {
     public static int[] mines;
@@ -11,6 +9,7 @@ public class Board {
     public static int Xboard;
     public static int AmountMines;
     public String difficulties;
+    public static int MinePosition;
     Random random = new Random();
     Scanner input = new Scanner(System.in);
 
@@ -57,11 +56,11 @@ public class Board {
     public void startBoard() {
         for (int i = 0; i < Xboard; i++) {
             for (int j = 0; j < Yboard; j++) {
-                board[i][j] = new Field();
+                board[i][j] = new Field(i,j);
             }
         }
     }
-    // Many fragen wie es funktioniert
+
     public void RandomMines(){
         int Line;
         int Column;
@@ -83,11 +82,7 @@ public class Board {
                 }
             }
         }
-        if (count == AmountMines){
-            return true;
-        }else {
-            return false;
-        }
+        return count == AmountMines;
     }
 
     //nochmals anschauen und korrigieren
@@ -117,15 +112,16 @@ public class Board {
     }
 
     //getMine wird einmal ausgeführt dann nicht mehr
-    public boolean setPosition(){
-        int Line = 0;
-        int Column = 0;
+    public void setPosition(){
+        int Line;
+        int Column;
 
         do {
             System.out.print("\nLine: ");
             Line = input.nextInt();
             System.out.print("\nColumn: ");
             Column = input.nextInt();
+
 
             if ((Field.getFieldsymbol() != '_') && ((Line < Xboard && Line > 0) && (Column < Yboard && Column > 0))){
                 System.out.println("Field is already shown");
@@ -138,32 +134,34 @@ public class Board {
 
         }while ((Line < 1 || Line > Xboard || Column < 1 || Column > Yboard) || (Field.getFieldsymbol() != '_'));
 
-        return getMine(Line, Column) == -1;
+        MinePosition = getMine(Line,Column);
     }
 
-    public Field[][] testBoard(int Xboard, int Yboard) {
+    public static boolean MinePosition(){
+        return MinePosition == -1;
+    }
+
+    public static Field[][] testBoard(int Xboard, int Yboard) {
         try {
-            board = new Field[Xboard][Yboard];
-            return board;
+            return new Field[Xboard][Yboard];
         } catch (Exception e) {
             return null;
         }
     }
 
-    //Schauen wie man es anwendet
-    public ArrayList<Field[][]> showNeighbour(Board board) {
-        int y = board.getYboard();
-        int x = board.getXboard();
+    public ArrayList<Field[][]> getNeighbour(Field field) {
+        int y = field.getY();
+        int x =field.getX();
 
-        ArrayList<Field[][]> b = new ArrayList<>();
-        b.add(testBoard(x, y + 1));
-        b.add(testBoard(x, y - 1));
-        b.add(testBoard(x - 1, y));
-        b.add(testBoard(x - 1, y + 1));
-        b.add(testBoard(x - 1, y - 1));
-        b.add(testBoard(x + 1, y));
-        b.add(testBoard(x + 1, y + 1));
-        b.add(testBoard(x + 1, y - 1));
-       return b;
+        ArrayList<Field[][]> neighbour = new ArrayList<>();
+        neighbour.add(testBoard(x, y + 1));
+        neighbour.add(testBoard(x, y - 1));
+        neighbour.add(testBoard(x - 1, y));
+        neighbour.add(testBoard(x - 1, y + 1));
+        neighbour.add(testBoard(x - 1, y - 1));
+        neighbour.add(testBoard(x + 1, y));
+        neighbour.add(testBoard(x + 1, y + 1));
+        neighbour.add(testBoard(x + 1, y - 1));
+        return neighbour;
     }
 }

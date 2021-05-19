@@ -12,8 +12,9 @@ public class Game {
             turn++;
             System.out.println("\nturn: "+turn);
             board.show();
-            finish = board.setPosition();
-            board.showNeighbour(board);
+            board.setPosition();
+            finish = Board.MinePosition();
+
 
             if (!finish){
                finish = board.win();
