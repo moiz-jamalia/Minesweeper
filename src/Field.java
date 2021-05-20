@@ -1,7 +1,3 @@
-import java.util.ArrayList;
-import java.util.Objects;
-import java.util.stream.Collectors;
-
 public class Field {
     private int X;
     private int Y;

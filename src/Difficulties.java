@@ -18,7 +18,7 @@ public class Difficulties {
         // Board 16x16
         AmountMines = 40;
         Xboard = 17;
-        Yboard = 17;;
+        Yboard = 17;
     }
 
     public static void hard(){

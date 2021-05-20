@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class Board {
     public static int[] mines;
     public static Field[][] board;
+    public static Field field;
     public static int Yboard;
     public static int Xboard;
     public static int AmountMines;
@@ -41,8 +42,10 @@ public class Board {
         }
         mines = new int[AmountMines];
         board = new Field[Xboard][Yboard];
+        field = new Field(Xboard, Yboard);
         startBoard();
         RandomMines();
+        showNeighbours(field);
     }
 
     public void startBoard() {
@@ -77,19 +80,12 @@ public class Board {
         return count == AmountMines;
     }
 
-    // ab for (int i = 0; i < 9; i++) weiter machen!
     public void show() {
-        int x = Xboard - 1;
-        int y = Yboard - 1;
-        Field f = new Field(x,y);
-        ArrayList<Field> neighbours = getNeighbours(f);
         System.out.println("\n\tlines");
         for (int line = Xboard - 1; line > 0; line--) {
             System.out.print("\t" + line);
             for (int column = 0; column < Yboard - 1; column++) {
-                for (int i = 0; i < 9; i++){
-                    neighbours.get(i);
-                }
+                neighbour();
                 System.out.print("\t" +Field.fieldsymbol);
             }
             System.out.println();
@@ -117,11 +113,11 @@ public class Board {
         do {
             System.out.print("\nLine: ");
             Line = input.nextInt();
-            System.out.print("\nColumn: ");
+            System.out.print("Column: ");
             Column = input.nextInt();
 
 
-            if ((Field.getFieldsymbol() != '_') && ((Line < Xboard && Line > 0) && (Column < Yboard && Column > 0))){
+            if ((Field.fieldsymbol != '_') && ((Line < 9 && Line > 0) && (Column < 9 && Column > 0))){
                 System.out.println("Field is already shown");
             }
 
@@ -130,7 +126,7 @@ public class Board {
                 System.out.println("Choose a number between 1 and " + (Yboard - 1) + " for Column");
             }
 
-        }while ((Line < 1 || Line >= Xboard || Column < 1 || Column >= Yboard) || (Field.getFieldsymbol() != '_'));
+        }while ((Line < 1 || Line >= Xboard || Column < 1 || Column >= Yboard) || (Field.fieldsymbol != '_'));
 
         MinePosition = getMine(Line,Column);
     }
@@ -139,11 +135,30 @@ public class Board {
         return MinePosition == -1;
     }
 
-    public static Field testBoard(int Xboard, int Yboard) {
+    public static Field testBoard(int x, int y) {
         try {
-            return new Field(Xboard,Yboard);
+            return new Field(x,y);
         } catch (Exception e) {
             return null;
+        }
+    }
+
+    public void neighbour(){
+        int x = Xboard;
+        int y = Yboard;
+        field = new Field(x,y);
+        ArrayList<Field> neighbours = getNeighbours(field);
+
+        for (Field neighbour : neighbours) {
+            field = neighbour;
+            showNeighbours(field);
+            if (!field.isBomb && field.isShown) {
+                System.out.println('1');
+            } else if (field.isBomb && field.isShown) {
+                Field.setFieldsymbol('*');
+            } else {
+                Field.setFieldsymbol('_');
+            }
         }
     }
 

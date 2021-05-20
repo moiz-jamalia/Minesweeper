@@ -28,5 +28,6 @@ public class Game {
         } else {
             System.out.println("Mine! You lost!");
         }
+        board.show();
     }
 }
