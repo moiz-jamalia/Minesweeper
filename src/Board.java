@@ -148,7 +148,7 @@ public class Board {
         int y = Yboard;
         field = new Field(x,y);
         ArrayList<Field> neighbours = getNeighbours(field);
-
+        showNeighbours(field);
         for (Field neighbour : neighbours) {
             field = neighbour;
             showNeighbours(field);
