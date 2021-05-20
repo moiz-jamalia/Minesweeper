@@ -1,5 +1,3 @@
-import com.sun.source.tree.WhileLoopTree;
-
 public class Game {
     boolean finish = false;
     int turn = 0;
