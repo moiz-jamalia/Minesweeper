@@ -65,6 +65,8 @@ public class Board {
                 Column = random.nextInt(Yboard);
             }while (board[Line][Column].getIsBomb());
             board[Line][Column].setIsBomb(true);
+            field = new Field(Line, Column);
+            field.setIsBomb(true);
         }
     }
     //Problem
@@ -81,11 +83,15 @@ public class Board {
     }
 
     public void show() {
+        int x = Xboard;
+        int y = Yboard;
+        Field f = new Field(x,y);
+        f.setIsShown(true);
         System.out.println("\n\tlines");
         for (int line = Xboard - 1; line > 0; line--) {
             System.out.print("\t" + line);
             for (int column = 0; column < Yboard - 1; column++) {
-                neighbour();
+                setNeighbourFieldsymbol(f);
                 System.out.print("\t" +Field.fieldsymbol);
             }
             System.out.println();
@@ -144,28 +150,24 @@ public class Board {
     }
 
     // working on that
-    public void neighbour(){
-        int x = Xboard;
-        int y = Yboard;
-        field = new Field(x,y);
-        ArrayList<Field> neighbours = getNeighbours(field);
-        showNeighbours(field);
+    public void setNeighbourFieldsymbol(Field f){
+        ArrayList<Field> neighbours = getNeighbours(f);
+        showNeighbours(f);
+
         for (Field neighbour : neighbours) {
-            field = neighbour;
-            showNeighbours(field);
-            if (!field.isBomb && field.isShown) {
-                System.out.println('1');
-            } else if (field.isBomb && field.isShown) {
-                Field.setFieldsymbol('*');
+            f = neighbour;
+            showNeighbours(f);
+            if (f.isBomb && f.isShown) {
+                Field.setFieldsymbol('1');
             } else {
                 Field.setFieldsymbol('_');
             }
         }
     }
 
-    public ArrayList<Field> getNeighbours(Field field) {
-        int y = field.getY();
-        int x =field.getX();
+    public ArrayList<Field> getNeighbours(Field f) {
+        int y = f.getY();
+        int x =f.getX();
 
         ArrayList<Field> neighbours = new ArrayList<>();
         neighbours.add(testBoard(x, y + 1));
