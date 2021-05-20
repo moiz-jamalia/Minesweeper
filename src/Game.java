@@ -1,33 +1,20 @@
+import com.sun.source.tree.WhileLoopTree;
+
 public class Game {
-    public Board board = new Board();
     boolean finish = false;
     int turn = 0;
 
     public void Minesweeper(){
-        Play(board);
+        Play();
     }
 
-    public void Play(Board board){
-        do {
-            turn++;
-            System.out.println("\nturn: "+turn);
-            board.show();
-            board.setPosition();
-            finish = Board.MinePosition();
+    public void Play(){
+        Board board = new Board();
 
 
-            if (!finish){
-               finish = board.win();
-               board.show();
-            }
-
-        }while (!finish);
-
-        if(board.win()){
-            System.out.println("Congratulations, you let the "+ Board.Xboard +"x" + Board.Yboard + " fields with the mines in " + turn + " turns");
-        } else {
-            System.out.println("Mine! You lost!");
-        }
-        board.show();
+            board.printboard();
+            do {
+                board.uncover();
+            } while (!finish);
     }
 }

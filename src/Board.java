@@ -2,50 +2,45 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Board {
-    public static int[] mines;
+public class Board{
     public static Field[][] board;
-    public static Field field;
     public static int Yboard;
     public static int Xboard;
     public static int AmountMines;
-    public String difficulties;
     public static int MinePosition;
     Random random = new Random();
-    Scanner input = new Scanner(System.in);
+    Difficulties d = new Difficulties();
 
     public Board() {
         System.out.print("choose your difficulty (easy, medium or hard): ");
-        difficulties = input.next();
+        Scanner input = new Scanner(System.in);
+        String difficulties = input.next();
 
         switch (difficulties) {
             case "easy":
-                Difficulties.easy();
-                Xboard = Difficulties.Xboard;
-                Yboard = Difficulties.Yboard;
-                AmountMines = Difficulties.getAmountMines();
+                d.easy();
+                Xboard = d.Xboard;
+                Yboard = d.Yboard;
+                AmountMines = d.AmountMines;
                 break;
 
             case "medium":
-                Difficulties.medium();
-                Xboard = Difficulties.Xboard;
-                Yboard = Difficulties.Yboard;
-                AmountMines = Difficulties.getAmountMines();
+                d.medium();
+                Xboard = d.Xboard;
+                Yboard = d.Yboard;
+                AmountMines = d.AmountMines;
                 break;
 
             case "hard":
-                Difficulties.hard();
-                Xboard = Difficulties.Xboard;
-                Yboard = Difficulties.Yboard;
-                AmountMines = Difficulties.getAmountMines();
+                d.hard();
+                Xboard = d.Xboard;
+                Yboard = d.Yboard;
+                AmountMines = d.AmountMines;
                 break;
         }
-        mines = new int[AmountMines];
         board = new Field[Xboard][Yboard];
-        field = new Field(Xboard, Yboard);
         startBoard();
-        RandomMines();
-        showNeighbours(field);
+        setRandomMines();
     }
 
     public void startBoard() {
@@ -56,7 +51,7 @@ public class Board {
         }
     }
 
-    public void RandomMines(){
+    public void setRandomMines(){
         int Line;
         int Column;
         for(int i = 0; i < AmountMines; i++){
@@ -65,76 +60,42 @@ public class Board {
                 Column = random.nextInt(Yboard);
             }while (board[Line][Column].getIsBomb());
             board[Line][Column].setIsBomb(true);
-            field = new Field(Line, Column);
-            field.setIsBomb(true);
         }
-    }
-    //Problem
-    public boolean win(){
-        int count = 0;
-        for (int line = 1; line < Xboard; line++){
-            for (int column = 1; column < Yboard; column++){
-                if (Field.getFieldsymbol() == '_') {
-                    count++;
-                }
-            }
-        }
-        return count == AmountMines;
     }
 
-    public void show() {
-        int x = Xboard;
-        int y = Yboard;
-        Field f = new Field(x,y);
-        f.setIsShown(true);
-        System.out.println("\n\tlines");
-        for (int line = Xboard - 1; line > 0; line--) {
-            System.out.print("\t" + line);
-            for (int column = 0; column < Yboard - 1; column++) {
-                setNeighbourFieldsymbol(f);
-                System.out.print("\t" +Field.fieldsymbol);
+    public void printboard(){
+        char c = 65;
+        for (int i = 1; i <= Xboard; i++){
+            System.out.print("\t" +i);
+        }
+        System.out.println();
+        for (int i = 0; i < Yboard; i++){
+            System.out.print(c);
+            for (int j = 0; j < Xboard; j++){
+                System.out.print("\t" +getField(i,j).getFieldsymbol());
             }
             System.out.println();
-        }
-        System.out.print("\t ");
-        for (int column = 1; column < Yboard; column++) {
-            System.out.print("\t" + column);
-        }
-        System.out.print("\t Columns");
-    }
-
-    public static int getMine(int x, int y){
-        boolean b = board[x][y].getIsBomb();
-        if (b) {
-            return -1;
-        } else {
-            return 1;
+            c++;
         }
     }
 
-    public void setPosition(){
-        int Line;
-        int Column;
-
-        do {
-            System.out.print("\nLine: ");
-            Line = input.nextInt();
-            System.out.print("Column: ");
-            Column = input.nextInt();
+    private Field getField(int x, int y){
+        return board[x][y];
+    }
 
 
-            if ((Field.fieldsymbol != '_') && ((Line < 9 && Line > 0) && (Column < 9 && Column > 0))){
-                System.out.println("Field is already shown");
-            }
+    public void uncover(){
+        System.out.print("\nLine: ");
+        Scanner input = new Scanner(System.in);
+        int x = input.nextInt() - 1;
 
-            if (Line < 1 || Line >= Xboard || Column < 1 || Column >= Yboard){
-                System.out.println("Choose a number between 1 and " + (Xboard - 1) + " for Line");
-                System.out.println("Choose a number between 1 and " + (Yboard - 1) + " for Column");
-            }
+        System.out.print("Column: ");
+        input = new Scanner(System.in);
+        String Column = input.next();
+        char c = Column.charAt(0);
+        int y = (int) c - 65;
 
-        }while ((Line < 1 || Line >= Xboard || Column < 1 || Column >= Yboard) || (Field.fieldsymbol != '_'));
 
-        MinePosition = getMine(Line,Column);
     }
 
     public static boolean MinePosition(){
@@ -149,21 +110,6 @@ public class Board {
         }
     }
 
-    // working on that
-    public void setNeighbourFieldsymbol(Field f){
-        ArrayList<Field> neighbours = getNeighbours(f);
-        showNeighbours(f);
-
-        for (Field neighbour : neighbours) {
-            f = neighbour;
-            showNeighbours(f);
-            if (f.isBomb && f.isShown) {
-                Field.setFieldsymbol('1');
-            } else {
-                Field.setFieldsymbol('_');
-            }
-        }
-    }
 
     public ArrayList<Field> getNeighbours(Field f) {
         int y = f.getY();
@@ -187,5 +133,9 @@ public class Board {
         for (Field f : neighbours){
             f.setIsShown(true);
         }
+    }
+
+    public boolean checkWin(){
+        return true;
     }
 }

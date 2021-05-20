@@ -1,40 +1,50 @@
 public class Field {
-    private int X;
-    private int Y;
-    public boolean isBomb = false;
-    public boolean isShown = false;
-    public static char fieldsymbol = '_';
+    private int x;
+    private int y;
+    private int amountNeighbourBomb;
+    private boolean isBomb = false;
+    private boolean isShown = false;
+    private String fieldsymbol = "_";
 
     public Field(int x, int y){
-        this.X = x;
-        this.Y = y;
+        this.x = x;
+        this.y = y;
     }
 
     public int getX(){
-        return X;
+        return x;
     }
 
     public int getY(){
-        return Y;
+        return y;
     }
 
     public void setIsShown(boolean shown){
-        this.isShown = shown;
+        isShown = shown;
     }
 
-    public static char getFieldsymbol(){
+    public boolean getIsShown(){
+        return isShown;
+    }
+
+    public String getFieldsymbol(){
         return fieldsymbol;
-    }
-
-    public static void setFieldsymbol(char symbol){
-        fieldsymbol = symbol;
     }
 
     public void setIsBomb(boolean Bomb){
         this.isBomb = Bomb;
+        this.fieldsymbol = "*";
     }
 
     public boolean getIsBomb(){
         return isBomb;
+    }
+
+    public void setAmountNeighbourBomb(int bomb){
+        amountNeighbourBomb = bomb;
+    }
+
+    public int getAmountNeighbourBomb(){
+        return amountNeighbourBomb;
     }
 }
