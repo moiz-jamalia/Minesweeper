@@ -143,6 +143,7 @@ public class Board {
         }
     }
 
+    // working on that
     public void neighbour(){
         int x = Xboard;
         int y = Yboard;
