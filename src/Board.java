@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.IllegalFormatCodePointException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -86,31 +85,36 @@ public class Board{
 
 
     public void uncover(){
-        System.out.print("\nLine: ");
-        Scanner input = new Scanner(System.in);
-        int x = input.nextInt() - 1;
+        int x;
+        int y;
+        do {
+            System.out.print("\nLine: ");
+            Scanner input = new Scanner(System.in);
+            x = input.nextInt() - 1;
 
-        System.out.print("Column: ");
-        input = new Scanner(System.in);
-        String Column = input.next();
-        char c = Column.charAt(0);
-        int y = (int) c - 65;
+            System.out.print("Column: ");
+            input = new Scanner(System.in);
+            String Column = input.next();
+            char c = Column.charAt(0);
+            y = (int) c - 65;
 
-        if ((x < Xboard && x > 0) && (y < Yboard && y > 0)){
-            System.out.println("Field is shown");
-        }
+            System.out.println(x);
+            System.out.println(y);
 
-        if (x < 1 || x > Xboard || y < 1 || y > Yboard){
-            System.out.println("choose a number between 1 and " + Xboard + " for Line");
-            System.out.println("choose a number between 1 and " + Yboard + " for Column");
-        }
+            if (((x < Xboard && x > 0) && (y < Yboard && y > 0)) && !getField(x, y).getFieldsymbol().equals("_")) {
+                System.out.println("Field is shown");
+            }
+
+        }while ((x < 1 || x > Xboard || y < 1 || y > Yboard) && getField(x,y).getFieldsymbol().equals("_"));
+
+        BombPosition = getField(x, y).getIsBomb() ? 1 : -1;
     }
 
-    public static boolean returnBombPosition(){
+    public boolean returnBombPosition(){
         return BombPosition == -1;
     }
 
-    public static Field testBoard(int x, int y) {
+    public Field testBoard(int x, int y) {
         try {
             return new Field(x,y);
         } catch (Exception e) {
@@ -144,6 +148,6 @@ public class Board{
     }
 
     public boolean checkWin(){
-        return true;
+       return true;
     }
 }

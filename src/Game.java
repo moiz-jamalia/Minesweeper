@@ -10,9 +10,23 @@ public class Game {
         Board board = new Board();
 
 
-            board.printboard();
+
             do {
+                board.printboard();
                 board.uncover();
+                finish = board.returnBombPosition();
+
+                if (!finish){
+
+                    finish = board.checkWin();
+                }
             } while (!finish);
+
+            if (board.checkWin()){
+                System.out.println("Congrats, you won");
+
+            }else{
+                System.out.println("you lost! lame");
+            }
     }
 }
