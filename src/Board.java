@@ -7,8 +7,8 @@ public class Board{
     public static int Yboard;
     public static int Xboard;
     public static int AmountMines;
-    public static int MinePosition;
-    Random random = new Random();
+    public static int BombPosition;
+    Random r = new Random();
     Difficulties d = new Difficulties();
 
     public Board() {
@@ -56,8 +56,8 @@ public class Board{
         int Column;
         for(int i = 0; i < AmountMines; i++){
             do {
-                Line = random.nextInt(Xboard);
-                Column = random.nextInt(Yboard);
+                Line = r.nextInt(Xboard);
+                Column = r.nextInt(Yboard);
             }while (board[Line][Column].getIsBomb());
             board[Line][Column].setIsBomb(true);
         }
@@ -98,8 +98,8 @@ public class Board{
 
     }
 
-    public static boolean MinePosition(){
-        return MinePosition == -1;
+    public static boolean BombPosition(){
+        return BombPosition == -1;
     }
 
     public static Field testBoard(int x, int y) {
