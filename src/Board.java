@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.IllegalFormatCodePointException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -71,8 +72,8 @@ public class Board{
         System.out.println();
         for (int i = 0; i < Yboard; i++){
             System.out.print(c);
-            for (int j = 0; j < Xboard; j++){
-                System.out.print("\t" +getField(i,j).getFieldsymbol());
+            for (int j = 0; j < Xboard; j++) {
+                    System.out.print("\t" + getField(j,i).getFieldsymbol());
             }
             System.out.println();
             c++;
@@ -95,10 +96,17 @@ public class Board{
         char c = Column.charAt(0);
         int y = (int) c - 65;
 
+        if ((x < Xboard && x > 0) && (y < Yboard && y > 0)){
+            System.out.println("Field is shown");
+        }
 
+        if (x < 1 || x > Xboard || y < 1 || y > Yboard){
+            System.out.println("choose a number between 1 and " + Xboard + " for Line");
+            System.out.println("choose a number between 1 and " + Yboard + " for Column");
+        }
     }
 
-    public static boolean BombPosition(){
+    public static boolean returnBombPosition(){
         return BombPosition == -1;
     }
 
