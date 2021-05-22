@@ -156,12 +156,15 @@ public class Board{
             }
 
             if (!f.getIsBomb()){
-                countNNBomb--;
+                countNNBomb = 0;
             }
             for (Field g: n) {
                 if (g.getIsBomb()){
                     countNNBomb++;
                     g.setFieldsymbol("*");
+                }
+                if (!g.getIsBomb()){
+                    g.setFieldsymbol(String.valueOf(countNNBomb));
                 }
             }
 
