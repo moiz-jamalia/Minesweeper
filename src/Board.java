@@ -59,7 +59,7 @@ public class Board{
                 Line = r.nextInt(Xboard);
                 Column = r.nextInt(Yboard);
             }while (board[Line][Column].getIsBomb());
-            board[Line][Column].setIsBomb(true);
+            board[Line][Column].setIsBomb();
         }
     }
 
@@ -85,29 +85,21 @@ public class Board{
 
 
     public void uncover(){
-        int x;
-        int y;
-        do {
-            System.out.print("\nLine: ");
-            Scanner input = new Scanner(System.in);
-            x = input.nextInt() - 1;
+        System.out.print("\nLine: ");
+        Scanner input = new Scanner(System.in);
+        int x = input.nextInt() - 1;
 
-            System.out.print("Column: ");
-            input = new Scanner(System.in);
-            String Column = input.next();
-            char c = Column.charAt(0);
-            y = (int) c - 65;
+        System.out.print("Column: ");
+        input = new Scanner(System.in);
+        String Column = input.next();
+        char c = Column.charAt(0);
+        int y = (int) c - 65;
 
-            System.out.println(x);
-            System.out.println(y);
+        Field f = getField(x,y);
+        f.setIsShown(true);
+        showNeighbours(f);
+        showFieldsymbol(f);
 
-            if (((x < Xboard && x > 0) && (y < Yboard && y > 0)) && !getField(x, y).getFieldsymbol().equals("_")) {
-                System.out.println("Field is shown");
-            }
-
-        }while ((x < 1 || x > Xboard || y < 1 || y > Yboard) && getField(x,y).getFieldsymbol().equals("_"));
-
-        BombPosition = getField(x, y).getIsBomb() ? 1 : -1;
     }
 
     public boolean returnBombPosition(){
@@ -116,7 +108,7 @@ public class Board{
 
     public Field testBoard(int x, int y) {
         try {
-            return new Field(x,y);
+            return getField(x,y);
         } catch (Exception e) {
             return null;
         }
@@ -124,8 +116,8 @@ public class Board{
 
 
     public ArrayList<Field> getNeighbours(Field f) {
+        int x = f.getX();
         int y = f.getY();
-        int x =f.getX();
 
         ArrayList<Field> neighbours = new ArrayList<>();
         neighbours.add(testBoard(x, y + 1));
@@ -147,7 +139,44 @@ public class Board{
         }
     }
 
-    public boolean checkWin(){
-       return true;
+    public void showFieldsymbol(Field field){
+        int countBombs = 0;
+        int countNNBomb = 0;
+
+        ArrayList<Field> neighbours = getNeighbours(field);
+        ArrayList<Field> n;
+
+        for (Field f : neighbours) {
+            n = getNeighbours(f);
+
+            if (f.getIsBomb()){
+                countBombs++;
+                f.setFieldsymbol("*"); // muss "_" gemacht werden später
+            }
+
+            if (!f.getIsBomb()){
+                countNNBomb--;
+            }
+            for (Field g: n) {
+                if (g.getIsBomb()){
+                    countNNBomb++;
+                    g.setFieldsymbol("*");
+                }
+            }
+
+        }
+        field.setFieldsymbol(String.valueOf(countBombs));
+    }
+
+    public boolean checkWin() {
+        int count = 0;
+        for (int i = 0; i < Xboard; i++){
+            for (int j = 0; j < Yboard; j++){
+              if (getField(i,j).getFieldsymbol().equals("_")){
+                    count++;
+                }
+            }
+        }
+        return count == AmountMines;
     }
 }

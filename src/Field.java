@@ -27,13 +27,17 @@ public class Field {
         return isShown;
     }
 
+    public void setFieldsymbol(String symbol){
+        fieldsymbol = symbol;
+    }
+
     public String getFieldsymbol(){
         return fieldsymbol;
     }
 
-    public void setIsBomb(boolean Bomb){
-        this.isBomb = Bomb;
-        this.fieldsymbol = "*";
+    public void setIsBomb(){
+        this.isBomb = true;
+        //this.fieldsymbol = "*";
     }
 
     public boolean getIsBomb(){

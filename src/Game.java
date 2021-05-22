@@ -9,17 +9,11 @@ public class Game {
     public void Play(){
         Board board = new Board();
 
-
-
             do {
                 board.printboard();
                 board.uncover();
                 finish = board.returnBombPosition();
 
-                if (!finish){
-
-                    finish = board.checkWin();
-                }
             } while (!finish);
 
             if (board.checkWin()){
