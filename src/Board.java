@@ -9,7 +9,6 @@ public class Board{
     public static int AmountMines;
     public static int BombPosition;
     public Field f;
-    public String Undo;
     Random r = new Random();
     Difficulties d = new Difficulties();
     SaveBoard saveBoard = new SaveBoard();
@@ -91,7 +90,7 @@ public class Board{
     public void uncover(){
         System.out.print("\nUndo (Yes or No): ");
         Scanner input = new Scanner(System.in);
-        Undo = input.next();
+        String Undo = input.next();
         int x;
         int y;
 
@@ -109,7 +108,7 @@ public class Board{
 
             f = getField(x,y);
             f.setIsShown(true);
-            showNeighbours(f);
+            showNeighboursTrue(f);
             showFieldsymbol(f);
             saveBoard.setSavedboard(f);
             history.save(saveBoard.saveBoard());
@@ -120,8 +119,8 @@ public class Board{
             f.setIsShown(false);
             Field h = getField(g.getX(),g.getY());
             h.setIsShown(true);
-            showNeighbours(f);
-            showNeighbours(h);
+            showNeighboursFalse(f);
+            showNeighboursTrue(h);
             showFieldsymbol(h);
         }
     }
@@ -155,18 +154,20 @@ public class Board{
         return neighbours;
     }
 
-    public void showNeighbours(Field field){
+    public void showNeighboursTrue(Field field){
         ArrayList<Field> neighbours = getNeighbours(field);
-        if (Undo.equals("Yes")){
-            for (Field f : neighbours) {
-                f.setIsShown(false);
-            }
-        }else{
-            for (Field f : neighbours){
-                f.setIsShown(true);
-            }
-        }
 
+        for (Field f : neighbours){
+            f.setIsShown(true);
+        }
+    }
+
+    public void showNeighboursFalse(Field field){
+        ArrayList<Field> neighbours = getNeighbours(field);
+
+        for (Field f : neighbours) {
+            f.setIsShown(false);
+        }
     }
 
     //still working on that!!! I got this!!!!!
@@ -186,9 +187,9 @@ public class Board{
                 f.setFieldsymbol("*"); // muss "_" gemacht werden später
 
             }
-            for (Field g : n) {
-                g.setFieldsymbol("k");
-            }
+        }
+        for (Field g : n) {
+            g.setFieldsymbol("k");
         }
         field.setFieldsymbol(String.valueOf(countBombs));
     }
