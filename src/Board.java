@@ -117,9 +117,7 @@ public class Board{
             Field g = saveBoard.getSavedboard();
             f.setFieldsymbol("_");
             f.setIsShown(false);
-            int gx = g.getX();
-            int gy = g.getY();
-            Field h = getField(gx,gy);
+            Field h = getField(g.getX(),g.getY());
             h.setIsShown(true);
             showNeighbours(h);
             showFieldsymbol(h);
