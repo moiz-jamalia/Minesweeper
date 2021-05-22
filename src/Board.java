@@ -9,6 +9,7 @@ public class Board{
     public static int AmountMines;
     public static int BombPosition;
     public Field f;
+    public String Undo;
     Random r = new Random();
     Difficulties d = new Difficulties();
     SaveBoard saveBoard = new SaveBoard();
@@ -90,7 +91,7 @@ public class Board{
     public void uncover(){
         System.out.print("\nUndo (Yes or No): ");
         Scanner input = new Scanner(System.in);
-        String Undo = input.next();
+        Undo = input.next();
         int x;
         int y;
 
@@ -119,6 +120,7 @@ public class Board{
             f.setIsShown(false);
             Field h = getField(g.getX(),g.getY());
             h.setIsShown(true);
+            showNeighbours(f);
             showNeighbours(h);
             showFieldsymbol(h);
         }
@@ -155,10 +157,16 @@ public class Board{
 
     public void showNeighbours(Field field){
         ArrayList<Field> neighbours = getNeighbours(field);
-
-        for (Field f : neighbours){
-            f.setIsShown(true);
+        if (Undo.equals("Yes")){
+            for (Field f : neighbours) {
+                f.setIsShown(false);
+            }
+        }else{
+            for (Field f : neighbours){
+                f.setIsShown(true);
+            }
         }
+
     }
 
     //still working on that!!! I got this!!!!!
@@ -167,7 +175,7 @@ public class Board{
         int countNNBomb = 0;
 
         ArrayList<Field> neighbours = getNeighbours(field);
-        ArrayList<Field> n;
+        ArrayList<Field> n = null;
 
 
 
@@ -176,6 +184,10 @@ public class Board{
             if (f.getIsBomb()){
                 countBombs++;
                 f.setFieldsymbol("*"); // muss "_" gemacht werden später
+
+            }
+            for (Field g : n) {
+                g.setFieldsymbol("k");
             }
         }
         field.setFieldsymbol(String.valueOf(countBombs));
