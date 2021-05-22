@@ -1,6 +1,5 @@
 public class Game {
     boolean finish = false;
-    int turn = 0;
 
     public void Minesweeper(){
         Play();

@@ -86,7 +86,6 @@ public class Board{
         return board[x][y];
     }
 
-
     public void uncover(){
         System.out.print("\nUndo (Yes or No): ");
         Scanner input = new Scanner(System.in);
@@ -137,7 +136,6 @@ public class Board{
         }
     }
 
-
     public ArrayList<Field> getNeighbours(Field f) {
         int x = f.getX();
         int y = f.getY();
@@ -173,23 +171,20 @@ public class Board{
     //still working on that!!! I got this!!!!!
     public void showFieldsymbol(Field field){
         int countBombs = 0;
-        int countNNBomb = 0;
+        int index = -1;
+        ArrayList<Field> g = null;
+        ArrayList<Field> n1 = getNeighbours(field);
 
-        ArrayList<Field> neighbours = getNeighbours(field);
-        ArrayList<Field> n = null;
-
-
-
-        for (Field f : neighbours) {
-            n = getNeighbours(f);
+        for (Field f : n1) {
+            g = getNeighbours(f);
             if (f.getIsBomb()){
                 countBombs++;
-                f.setFieldsymbol("*"); // muss "_" gemacht werden später
-
+                f.setFieldsymbol("*");
             }
         }
-        for (Field g : n) {
-            g.setFieldsymbol("k");
+        index++;
+        if (g != null) {
+            showFieldsymbol(g.get(index));
         }
         field.setFieldsymbol(String.valueOf(countBombs));
     }

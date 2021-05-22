@@ -3,8 +3,6 @@ public class Difficulties {
     public int Xboard;
     public int Yboard;
 
-
-
     public void easy(){
         // Mines 10
         // Board 8x8
