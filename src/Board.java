@@ -139,6 +139,7 @@ public class Board{
         }
     }
 
+    //still working on that!!! I got this!!!!!
     public void showFieldsymbol(Field field){
         int countBombs = 0;
         int countNNBomb = 0;
