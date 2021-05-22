@@ -9,7 +9,7 @@ public class LayoutHistory {
     }
 
     public SaveBoardState undo(){
-        int lastIndex = states.size() - 1;
+        int lastIndex = states.size() - 2;
         SaveBoardState lastState = states.get(lastIndex);
 
         states.remove(lastState);

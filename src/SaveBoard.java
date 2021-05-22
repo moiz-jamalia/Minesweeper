@@ -1,15 +1,19 @@
 public class SaveBoard {
-    private Board savedboard;
+    private Field savedboard;
 
-    public SaveBoardState createState(){
+    public void setSavedboard(Field field){
+        this.savedboard = field;
+    }
+
+    public Field getSavedboard(){
+        return savedboard;
+    }
+
+    public SaveBoardState saveBoard(){
         return new SaveBoardState(savedboard);
     }
 
     public void restore(SaveBoardState saveBoard){
         savedboard = saveBoard.getBoard();
-    }
-
-    public Board getSavedboard(){
-        return savedboard;
     }
 }

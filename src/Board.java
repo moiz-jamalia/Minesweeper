@@ -8,6 +8,7 @@ public class Board{
     public static int Xboard;
     public static int AmountMines;
     public static int BombPosition;
+    public Field f;
     Random r = new Random();
     Difficulties d = new Difficulties();
     SaveBoard saveBoard = new SaveBoard();
@@ -90,8 +91,9 @@ public class Board{
         System.out.print("\nUndo (Yes or No): ");
         Scanner input = new Scanner(System.in);
         String Undo = input.next();
-        int x = 0;
-        int y = 0;
+        int x;
+        int y;
+
         
         if (Undo.equals("No")){
             System.out.print("Line: ");
@@ -104,13 +106,23 @@ public class Board{
             char c = Column.charAt(0);
             y = (int) c - 65;
 
-            Field f = getField(x,y);
+            f = getField(x,y);
             f.setIsShown(true);
             showNeighbours(f);
             showFieldsymbol(f);
-            history.save(saveBoard.createState());
+            saveBoard.setSavedboard(f);
+            history.save(saveBoard.saveBoard());
         }else{
             saveBoard.restore(history.undo());
+            Field g = saveBoard.getSavedboard();
+            f.setFieldsymbol("_");
+            f.setIsShown(false);
+            int gx = g.getX();
+            int gy = g.getY();
+            Field h = getField(gx,gy);
+            h.setIsShown(true);
+            showNeighbours(h);
+            showFieldsymbol(h);
         }
     }
 

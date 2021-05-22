@@ -1,12 +1,11 @@
 public class SaveBoardState {
-    private final Board board;
+    private Field board;
 
-    public SaveBoardState(Board board){
+    public SaveBoardState(Field board){
         this.board = board;
     }
 
-    public Board getBoard(){
+    public Field getBoard(){
         return board;
     }
-
 }
