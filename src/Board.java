@@ -10,6 +10,8 @@ public class Board{
     public static int BombPosition;
     Random r = new Random();
     Difficulties d = new Difficulties();
+    SaveBoard saveBoard = new SaveBoard();
+    LayoutHistory history = new LayoutHistory();
 
     public Board() {
         System.out.print("choose your difficulty (easy, medium or hard): ");
@@ -85,21 +87,31 @@ public class Board{
 
 
     public void uncover(){
-        System.out.print("\nLine: ");
+        System.out.print("\nUndo (Yes or No): ");
         Scanner input = new Scanner(System.in);
-        int x = input.nextInt() - 1;
+        String Undo = input.next();
+        int x = 0;
+        int y = 0;
+        
+        if (Undo.equals("No")){
+            System.out.print("Line: ");
+            input = new Scanner(System.in);
+            x = input.nextInt() - 1;
 
-        System.out.print("Column: ");
-        input = new Scanner(System.in);
-        String Column = input.next();
-        char c = Column.charAt(0);
-        int y = (int) c - 65;
+            System.out.print("Column: ");
+            input = new Scanner(System.in);
+            String Column = input.next();
+            char c = Column.charAt(0);
+            y = (int) c - 65;
 
-        Field f = getField(x,y);
-        f.setIsShown(true);
-        showNeighbours(f);
-        showFieldsymbol(f);
-
+            Field f = getField(x,y);
+            f.setIsShown(true);
+            showNeighbours(f);
+            showFieldsymbol(f);
+            history.save(saveBoard.createState());
+        }else{
+            saveBoard.restore(history.undo());
+        }
     }
 
     public boolean returnBombPosition(){
@@ -147,27 +159,14 @@ public class Board{
         ArrayList<Field> neighbours = getNeighbours(field);
         ArrayList<Field> n;
 
+
+
         for (Field f : neighbours) {
             n = getNeighbours(f);
-
             if (f.getIsBomb()){
                 countBombs++;
                 f.setFieldsymbol("*"); // muss "_" gemacht werden später
             }
-
-            if (!f.getIsBomb()){
-                countNNBomb = 0;
-            }
-            for (Field g: n) {
-                if (g.getIsBomb()){
-                    countNNBomb++;
-                    g.setFieldsymbol("*");
-                }
-                if (!g.getIsBomb()){
-                    g.setFieldsymbol(String.valueOf(countNNBomb));
-                }
-            }
-
         }
         field.setFieldsymbol(String.valueOf(countBombs));
     }
