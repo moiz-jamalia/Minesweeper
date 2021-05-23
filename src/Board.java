@@ -156,7 +156,9 @@ public class Board{
         ArrayList<Field> neighbours = getNeighbours(field);
 
         for (Field f : neighbours){
-            f.setIsShown(true);
+            if (!(f == null)) {
+                f.setIsShown(true);
+            }
         }
     }
 
@@ -187,6 +189,7 @@ public class Board{
 
     //still working on that!!! I got this!!!!!
     public void showFieldsymbol(Field field){
+        field.setIsShown(true);
         if (NeighbourBombs(field) == 0){
             ArrayList<Field> n = getNeighbours(field);
             for (Field f : n){
