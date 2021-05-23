@@ -98,6 +98,10 @@ public class Board{
             board = saveBoard.getSavedboard();
             f.setIsShown(false);
             f.setFieldsymbol("_");
+            ArrayList<Field> neighbours = getNeighbours(f);
+            for (Field neighbour : neighbours) {
+                neighbour.setFieldsymbol("_");
+            }
         }
     }
 
@@ -189,7 +193,7 @@ public class Board{
         ArrayList<Field> n = getNeighbours(field);
 
         for (Field f : n) {
-            if (f.getIsBomb() && f.getIsShown()){
+            if (f.getIsBomb()){
                 countBombs++;
             }
             field.setFieldsymbol(String.valueOf(countBombs));
