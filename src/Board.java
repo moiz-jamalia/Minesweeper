@@ -94,34 +94,37 @@ public class Board{
         if (Undo.equals("No")){
             uncover();
         }else {
-            if (!checkWin()) {
-                saveBoard.restore(history.undo());
-                saveBoard.getSavedboard();
-                f.setIsShown(false);
-                showNeighboursFalse(f);
-                f.setFieldsymbol("_");
-            }
+            saveBoard.restore(history.undo());
+            board = saveBoard.getSavedboard();
+            f.setIsShown(false);
+            f.setFieldsymbol("_");
         }
     }
 
     public void uncover(){
-            System.out.print("Line: ");
-            Scanner input = new Scanner(System.in);
-            int x = input.nextInt() - 1;
+        System.out.print("Line: ");
+        Scanner input = new Scanner(System.in);
+        int x = input.nextInt() - 1;
 
-            System.out.print("Column: ");
-            input = new Scanner(System.in);
-            String Column = input.next();
-            char c = Column.charAt(0);
-            int y = (int) c - 65;
+        System.out.print("Column: ");
+        input = new Scanner(System.in);
+        String Column = input.next();
+        char c = Column.charAt(0);
+        int y = (int) c - 65;
 
-            f = getField(x,y);
-            showNeighboursTrue(f);
-            showFieldsymbol(f);
-            winlose(f);
+        f = getField(x,y);
+        showFieldsymbol(f);
+        ArrayList<Field> neighbours = getNeighbours(f);
+        for (Field neighbour : neighbours) {
+            showFieldsymbol(neighbour);
+            if (neighbour.getIsBomb()) {
+                neighbour.setFieldsymbol("_");
+            }
+        }
+        winlose(f);
 
-            saveBoard.setSavedboard(board);
-            history.save(saveBoard.saveBoard());
+        saveBoard.setSavedboard(board);
+        history.save(saveBoard.saveBoard());
     }
 
     public boolean returnBombPosition(){
@@ -152,64 +155,45 @@ public class Board{
         return neighbours;
     }
 
-    public void showNeighboursTrue(Field field){
-        ArrayList<Field> neighbours = getNeighbours(field);
-
-        for (Field f : neighbours){
-            if (!(f == null)) {
-                f.setIsShown(true);
-            }
-        }
-    }
-
-    public void showNeighboursFalse(Field field){
-        ArrayList<Field> neighbours = getNeighbours(field);
-
-        for (Field f : neighbours) {
-            f.setIsShown(false);
-        }
-    }
-
-    public void winlose(Field f){
-
-        if (f.getIsBomb()){
+    public void winlose(Field f) {
+        if (f.getIsBomb()) {
             BombPosition = -1;
             f.setIsShown(true);
-            for (int i = 0; i < Xboard; i++){
-                for (int j = 0; j < Yboard; j++){
-                    if (board[i][j].getIsBomb()){
+            for (int i = 0; i < Xboard; i++) {
+                for (int j = 0; j < Yboard; j++) {
+                    if (board[i][j].getIsBomb()) {
                         board[i][j].setFieldsymbol("*");
                     }
                 }
             }
-        }else{
-            showFieldsymbol(f);
         }
     }
 
     public void showFieldsymbol(Field field){
+        int countBombs = 0;
         field.setIsShown(true);
-        if (NeighbourBombs(field) == 0){
+        if (neighbourBombs(field) == 0){
             ArrayList<Field> n = getNeighbours(field);
             for (Field f : n){
-                if (!f.getIsBomb() && !f.getIsShown()){
-                    showFieldsymbol(f);
-                    System.out.println(f);
+                if (f.getIsBomb()) {
+                    countBombs++;
+                    f.setFieldsymbol("_");
                 }
             }
+            field.setFieldsymbol(String.valueOf(countBombs));
         }
     }
 
-    public int NeighbourBombs(Field field){
+    public int neighbourBombs(Field field){
         int countBombs = 0;
         ArrayList<Field> n = getNeighbours(field);
 
         for (Field f : n) {
-            if (f.getIsBomb()){
+            if (f.getIsBomb() && f.getIsShown()){
                 countBombs++;
             }
+            field.setFieldsymbol(String.valueOf(countBombs));
         }
-        field.setFieldsymbol(String.valueOf(countBombs));
         return countBombs;
     }
 
