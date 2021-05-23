@@ -93,7 +93,6 @@ public class Board{
         int x;
         int y;
 
-        
         if (Undo.equals("No")){
             System.out.print("Line: ");
             input = new Scanner(System.in);
