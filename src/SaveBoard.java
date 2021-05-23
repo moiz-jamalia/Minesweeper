@@ -1,11 +1,11 @@
 public class SaveBoard {
-    private Field savedboard;
+    private Field[][] savedboard;
 
-    public void setSavedboard(Field field){
+    public void setSavedboard(Field[][] field){
         this.savedboard = field;
     }
 
-    public Field getSavedboard(){
+    public Field[][] getSavedboard(){
         return savedboard;
     }
 

@@ -10,7 +10,7 @@ public class Game {
 
             do {
                 board.printboard();
-                board.uncover();
+                board.undo();
                 finish = board.returnBombPosition();
 
             } while (!finish);
@@ -22,5 +22,6 @@ public class Game {
                 System.out.println("you lost! lame");
             }
             board.printboard();
+            board.undo();
     }
 }

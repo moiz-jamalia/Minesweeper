@@ -6,7 +6,7 @@ public class Board{
     public static Field[][] board;
     public static int Yboard;
     public static int Xboard;
-    public static int AmountMines;
+    public static int AmountBombs;
     public static int BombPosition;
     public Field f;
     Random r = new Random();
@@ -24,21 +24,21 @@ public class Board{
                 d.easy();
                 Xboard = d.Xboard;
                 Yboard = d.Yboard;
-                AmountMines = d.AmountMines;
+                AmountBombs = d.AmountBombs;
                 break;
 
             case "medium":
                 d.medium();
                 Xboard = d.Xboard;
                 Yboard = d.Yboard;
-                AmountMines = d.AmountMines;
+                AmountBombs = d.AmountBombs;
                 break;
 
             case "hard":
                 d.hard();
                 Xboard = d.Xboard;
                 Yboard = d.Yboard;
-                AmountMines = d.AmountMines;
+                AmountBombs = d.AmountBombs;
                 break;
         }
         board = new Field[Xboard][Yboard];
@@ -57,7 +57,7 @@ public class Board{
     public void setRandomMines(){
         int Line;
         int Column;
-        for(int i = 0; i < AmountMines; i++){
+        for(int i = 0; i < AmountBombs; i++){
             do {
                 Line = r.nextInt(Xboard);
                 Column = r.nextInt(Yboard);
@@ -86,42 +86,42 @@ public class Board{
         return board[x][y];
     }
 
-    public void uncover(){
+    public void undo(){
         System.out.print("\nUndo (Yes or No): ");
         Scanner input = new Scanner(System.in);
         String Undo = input.next();
-        int x;
-        int y;
 
         if (Undo.equals("No")){
+            uncover();
+        }else {
+            if (!checkWin()) {
+                saveBoard.restore(history.undo());
+                saveBoard.getSavedboard();
+                f.setIsShown(false);
+                showNeighboursFalse(f);
+                f.setFieldsymbol("_");
+            }
+        }
+    }
+
+    public void uncover(){
             System.out.print("Line: ");
-            input = new Scanner(System.in);
-            x = input.nextInt() - 1;
+            Scanner input = new Scanner(System.in);
+            int x = input.nextInt() - 1;
 
             System.out.print("Column: ");
             input = new Scanner(System.in);
             String Column = input.next();
             char c = Column.charAt(0);
-            y = (int) c - 65;
+            int y = (int) c - 65;
 
             f = getField(x,y);
-            f.setIsShown(true);
             showNeighboursTrue(f);
             showFieldsymbol(f);
             winlose(f);
-            saveBoard.setSavedboard(f);
+
+            saveBoard.setSavedboard(board);
             history.save(saveBoard.saveBoard());
-        }else{
-            saveBoard.restore(history.undo());
-            Field g = saveBoard.getSavedboard();
-            f.setIsShown(false);
-            f.setFieldsymbol("_");
-            Field h = getField(g.getX(),g.getY());
-            h.setIsShown(true);
-            showNeighboursFalse(f);
-            showNeighboursTrue(h);
-            showFieldsymbol(h);
-        }
     }
 
     public boolean returnBombPosition(){
@@ -187,7 +187,6 @@ public class Board{
         }
     }
 
-    //still working on that!!! I got this!!!!!
     public void showFieldsymbol(Field field){
         field.setIsShown(true);
         if (NeighbourBombs(field) == 0){
@@ -195,6 +194,7 @@ public class Board{
             for (Field f : n){
                 if (!f.getIsBomb() && !f.getIsShown()){
                     showFieldsymbol(f);
+                    System.out.println(f);
                 }
             }
         }
@@ -222,6 +222,6 @@ public class Board{
                 }
             }
         }
-        return count == AmountMines;
+        return count == AmountBombs;
     }
 }
