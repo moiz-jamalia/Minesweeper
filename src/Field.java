@@ -36,7 +36,6 @@ public class Field {
 
     public void setIsBomb(){
         this.isBomb = true;
-        //this.fieldsymbol = "*";
     }
 
     public boolean getIsBomb(){
