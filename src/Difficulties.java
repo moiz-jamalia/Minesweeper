@@ -24,9 +24,9 @@ public class Difficulties implements Difficulty{
 
     @Override
     public void hard() {
-        // Mines: 90
+        // Mines: 99
         // Board: 30x16
-        AmountBombs = 90;
+        AmountBombs = 99;
         Xboard = 30;
         Yboard = 16;
     }

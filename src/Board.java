@@ -129,7 +129,6 @@ public class Board{
             }
         }
         winlose(f);
-
         saveBoard.setSavedboard(board);
         history.save(saveBoard.saveBoard());
     }
@@ -194,7 +193,6 @@ public class Board{
     public int neighbourBombs(Field field){
         int countBombs = 0;
         ArrayList<Field> n = getNeighbours(field);
-
         for (Field f : n) {
             if (f.getIsBomb()){
                 countBombs++;
