@@ -17,7 +17,8 @@ public class Board{
     public Board() {
         System.out.print("choose your difficulty (easy, medium or hard): ");
         Scanner input = new Scanner(System.in);
-        String difficulties = input.next();
+        String Difficulties = input.next();
+        String difficulties = Difficulties.toLowerCase();
 
         switch (difficulties) {
             case "easy":
@@ -90,8 +91,9 @@ public class Board{
         System.out.print("\nUndo (Yes or No): ");
         Scanner input = new Scanner(System.in);
         String Undo = input.next();
+        String undo = Undo.toLowerCase();
 
-        if (Undo.equals("No")){
+        if (undo.equals("no")){
             uncover();
         }else {
             saveBoard.restore(history.undo());
@@ -112,7 +114,8 @@ public class Board{
 
         System.out.print("Column: ");
         input = new Scanner(System.in);
-        String Column = input.next();
+        String column = input.next();
+        String Column = column.toUpperCase();
         char c = Column.charAt(0);
         int y = (int) c - 65;
 
