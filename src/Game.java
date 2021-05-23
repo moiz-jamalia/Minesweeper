@@ -21,5 +21,6 @@ public class Game {
             }else{
                 System.out.println("you lost! lame");
             }
+            board.printboard();
     }
 }

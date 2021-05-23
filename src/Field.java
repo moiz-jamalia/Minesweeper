@@ -1,7 +1,6 @@
 public class Field {
     private int x;
     private int y;
-    private int amountNeighbourBomb;
     private boolean isBomb = false;
     private boolean isShown = false;
     private String fieldsymbol = "_";
@@ -42,13 +41,5 @@ public class Field {
 
     public boolean getIsBomb(){
         return isBomb;
-    }
-
-    public void setAmountNeighbourBomb(int bomb){
-        amountNeighbourBomb = bomb;
-    }
-
-    public int getAmountNeighbourBomb(){
-        return amountNeighbourBomb;
     }
 }

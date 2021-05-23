@@ -109,13 +109,14 @@ public class Board{
             f.setIsShown(true);
             showNeighboursTrue(f);
             showFieldsymbol(f);
+            winlose(f);
             saveBoard.setSavedboard(f);
             history.save(saveBoard.saveBoard());
         }else{
             saveBoard.restore(history.undo());
             Field g = saveBoard.getSavedboard();
-            f.setFieldsymbol("_");
             f.setIsShown(false);
+            f.setFieldsymbol("_");
             Field h = getField(g.getX(),g.getY());
             h.setIsShown(true);
             showNeighboursFalse(f);
@@ -168,25 +169,46 @@ public class Board{
         }
     }
 
+    public void winlose(Field f){
+
+        if (f.getIsBomb()){
+            BombPosition = -1;
+            f.setIsShown(true);
+            for (int i = 0; i < Xboard; i++){
+                for (int j = 0; j < Yboard; j++){
+                    if (board[i][j].getIsBomb()){
+                        board[i][j].setFieldsymbol("*");
+                    }
+                }
+            }
+        }else{
+            showFieldsymbol(f);
+        }
+    }
+
     //still working on that!!! I got this!!!!!
     public void showFieldsymbol(Field field){
-        int countBombs = 0;
-        int index = -1;
-        ArrayList<Field> g = null;
-        ArrayList<Field> n1 = getNeighbours(field);
-
-        for (Field f : n1) {
-            g = getNeighbours(f);
-            if (f.getIsBomb()){
-                countBombs++;
-                f.setFieldsymbol("*");
+        if (NeighbourBombs(field) == 0){
+            ArrayList<Field> n = getNeighbours(field);
+            for (Field f : n){
+                if (!f.getIsBomb() && !f.getIsShown()){
+                    showFieldsymbol(f);
+                }
             }
         }
-        index++;
-        if (g != null) {
-            showFieldsymbol(g.get(index));
+    }
+
+    public int NeighbourBombs(Field field){
+        int countBombs = 0;
+        ArrayList<Field> n = getNeighbours(field);
+
+        for (Field f : n) {
+            if (f.getIsBomb()){
+                countBombs++;
+            }
         }
         field.setFieldsymbol(String.valueOf(countBombs));
+        return countBombs;
     }
 
     public boolean checkWin() {
